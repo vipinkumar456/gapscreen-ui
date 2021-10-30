@@ -1,0 +1,344 @@
+<p-toast position="top-right"></p-toast>
+<div style="margin-top:10px;"></div>
+<form class="userForm" [formGroup]="reportForm"  style="margin-bottom: 81px !important;">
+  <div >
+    <div class="p-col">
+        <h3 style="text-align: center;"  class="m-0 pt-1 pb-2" >{{heading}}</h3>
+    </div>
+    <div class="p-fluid p-formgrid p-grid pt-2">
+          <div class="p-field p-col-12 p-md-6 form-group" >
+              <span class="p-float-label">
+                  <input pInputText type="text" formControlName="subsidiaryCategory" >
+                  <label for="division">Subsidiary/Associate/Joint Venture Category</label>
+              </span>
+          </div>
+         
+          <div class="p-field p-col-12 p-md-6" >
+              <span class="p-float-label">
+                  <input pInputText type="text" formControlName="operationArea">
+                  <label for="division">Area of operation of related party</label>
+              </span>
+          </div>
+    </div>
+
+    <div class="p-fluid p-formgrid p-grid pt-2">
+       <div class="p-field p-col-12 p-md-6" >
+              <span class="p-float-label">
+                  <input pInputText formControlName="subsidiaryCode" type="text"  >
+                  <label for="division">Subsidiary/Associate/Joint Venture Code</label>
+              </span>
+          </div>
+          <div class="p-field p-col-12 p-md-6" >
+              <span class="p-float-label">
+                  <input pInputText formControlName="subsidiaryName" type="text"  >
+                  <label for="division">Subsidiary/Associate/Joint Venture Name</label>
+              </span>
+          </div>
+    </div>
+
+    <div class="p-fluid p-formgrid p-grid pt-2">
+       <div class="p-field p-col-12 p-md-6" >
+              <span class="p-float-label">
+                  <input formControlName="activityName" pInputText type="text"  >
+                  <label for="division">Activity Name</label>
+              </span>
+          </div>
+          <div class="p-field p-col-12 p-md-6" >
+              <span class="p-float-label">
+                  <input pInputText formControlName="regulatoryName" type="text"  >
+                  <label for="division">Regulator Name</label>
+              </span>
+          </div>
+    </div>
+  
+    <p-accordion>
+        <p-accordionTab header="Part A - Select Financial Parameters"  class="p-accordionTab" [selected]="false">
+              <div class="p-fluid p-formgrid p-grid pt-2">
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="balanceSheetFootings" type="text"  >
+                                <label for="division">Balance Sheet Footings(Total Assets)</label>
+                            </span>
+                        </div>
+                        <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="capitalFunds" type="text"  >
+                                <label for="division">Capital Funds*</label>
+                            </span>
+                        </div>
+                  </div>
+
+                  <div class="p-fluid p-formgrid p-grid pt-2">
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="minCapitalAdequacyPrescribed" type="text"  >
+                                <label for="division">Minimum Capital Prescribed by Regulators (if any)</label>
+                            </span>
+                        </div>
+                        <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="minCapitalPrescribed" type="text"  >
+                                <label for="division">Minimum Capital Adequacy Prescribed by Regulators (%)</label>
+                            </span>
+                        </div>
+                  </div>
+
+                  <div class="p-fluid p-formgrid p-grid pt-2">
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="capitalAdequacyRatio" type="text"  >
+                                <label for="division">Capital Adequacy Ratio(Actual) (%)</label>
+                            </span>
+                        </div>
+                        <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="notionalCapitalFunds" type="text"  >
+                                <label for="division">National Capital Funds**</label>
+                            </span>
+                        </div>
+               
+                  </div>
+                  <div class="p-fluid p-formgrid p-grid pt-2">
+
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="riskWeightedAssets" type="text"  >
+                                <label for="division">Risk-Weighted Assets**</label>
+                            </span>
+                        </div>
+                        <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="capitalAndReservesInBalanceSheet" type="text"  >
+                                <label for="division">Capital & Reserves as in the Balance Sheet</label>
+                            </span>
+                        </div>
+               
+                  </div>
+
+                  <div class="p-fluid p-formgrid p-grid pt-2">
+
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="totalDeposits" type="text"  >
+                                <label for="division">Total Deposits</label>
+                            </span>
+                        </div>
+                        <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="totalBorrowings" type="text"  >
+                                <label for="division">Total Borrowings</label>
+                            </span>
+                        </div>
+               
+                  </div>
+
+                  <div class="p-fluid p-formgrid p-grid pt-2">
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="profitBeforeTax" type="text"  >
+                                <label for="division">Profit before Tax</label>
+                            </span>
+                        </div>
+                        <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="profitAfterTaxOrReturn" type="text"  >
+                                <label for="division">Profit after Tax/Return</label>
+                            </span>
+                        </div>
+                  </div>
+
+                  <div class="p-fluid p-formgrid p-grid pt-2">
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="surplusOrLoss" type="text"  >
+                                <label for="division">Surplus/(Loss) on Profit & Loss a/c carried forward</label>
+                            </span>
+                        </div>
+                        <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="returnOnAssets" type="text"  >
+                                <label for="division">Return on Assets</label>
+                            </span>
+                        </div>
+               
+                   </div>
+
+                   <div class="p-fluid p-formgrid p-grid pt-2">
+
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="returnOnEquity" type="text"  >
+                                <label for="division">Return on Equity</label>
+                            </span>
+                        </div>
+                        <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="totalDividendsPaid" type="text"  >
+                                <label for="division">Total Dividends Paid</label>
+                            </span>
+                        </div>
+                   </div>
+
+                   <div class="p-fluid p-formgrid p-grid pt-2">
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="grossLoansAndAdvances" type="text"  >
+                                <label for="division">Loans and Advances-Gross</label>
+                            </span>
+                        </div>
+                        <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="grossNonPerformingLoans" type="text"  >
+                                <label for="division">Non-performing Loans - Gross</label>
+                            </span>
+                        </div>
+               
+                   </div>
+
+                   <div class="p-fluid p-formgrid p-grid pt-2">
+
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="nplProvisionsHeld" type="text"  >
+                                <label for="division">Provisions held against Non-performing loans</label>
+                            </span>
+                        </div>
+                        <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="nplProvisionsRequired" type="text"  >
+                                <label for="division">Provisions required against Non-performing loans</label>
+                            </span>
+                        </div>
+                   </div>
+
+                   <div class="p-fluid p-formgrid p-grid pt-2">
+
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="totalInvestmentsBookValue" type="text"  >
+                                <label for="division">Total Investments Book value</label>
+                            </span>
+                        </div>
+                        <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="totalInvestmentsMarketValue" type="text"  >
+                                <label for="division">Total Investments Market Value</label>
+                            </span>
+                        </div>
+                   </div>
+
+                   <div class="p-fluid p-formgrid p-grid pt-2">
+
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="nonPerformingInvestments" type="text"  >
+                                <label for="division">Non-performing Investments</label>
+                            </span>
+                        </div>
+                        <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="npiProvisionsHeld" type="text"  >
+                                <label for="division">Provisions held against Non-performing Investments</label>
+                            </span>
+                        </div>
+                   </div>
+
+                   <div class="p-fluid p-formgrid p-grid pt-2">
+
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="npiProvisionsRequired" type="text"  >
+                                <label for="division">Provisions required against Non-performing Investments</label>
+                            </span>
+                        </div>
+                        <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="contingentLiabilities" type="text"  >
+                                <label for="division">Contingent Liabilities / Off-Balance Sheet Exposures</label>
+                            </span>
+                        </div>
+               
+                   </div>
+                   
+                 
+        </p-accordionTab>
+        <p-accordionTab header="Part B - Large Exposures and Ownership Details">
+              <div class="p-fluid p-formgrid p-grid pt-2">
+                     <div class="p-field p-col-12 p-md-12" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="largeCredits" type="text"  >
+                                <label for="division">Large Credits(Substantial Exposures exceeding 10% of Capital Funds)</label>
+                            </span>
+                        </div>
+                   </div>
+                   
+                   <div class="p-fluid p-formgrid p-grid pt-2">
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="noOfCounterparties" type="text"  >
+                                <label for="division">No. of Counterparties</label>
+                            </span>
+                        </div> 
+                             
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="aggregateExposureAmount" type="text"  >
+                                <label for="division">Aggregate Exposure (Amount)</label>
+                            </span>
+                        </div>
+                        <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="aggregateExposurePercentage" type="text"  >
+                                <label for="division">Aggregate Exposure (% of Capital Funds)</label>
+                            </span>
+                        </div>
+               
+                   </div>
+        </p-accordionTab>
+        <p-accordionTab header="Ownership Summary">
+              <div class="p-fluid p-formgrid p-grid pt-2">
+
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="investmentInCapital" type="text"  >
+                                <label for="division">Investment in Capital by Parent Bank(Amount)</label>
+                            </span>
+                        </div>
+                        <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="percentageOfSharesHeld" type="text"  >
+                                <label for="division">% of Shares held by Parent Bank</label>
+                            </span>
+                        </div>
+               
+                   </div>
+
+                   <div class="p-fluid p-formgrid p-grid pt-2">
+
+                     <div class="p-field p-col-12 p-md-6" >
+                            <span class="p-float-label">
+                                <input pInputText formControlName="percentageOfTotalCapital" type="text"  >
+                                <label for="division">% of Total Captial held by Parent Bank (including Tier || Capital )</label>
+                            </span>
+                        </div>
+                   </div>
+
+        </p-accordionTab>
+    </p-accordion>
+    <p>*As defined by regulators of Subsidiaries /Associates/ Joint Ventures.</p>
+    <p>**Calculated as per extant DBOD guidelines</p>
+
+<div class="row" style="padding-bottom:31px;padding-top: 25px;">
+
+    <button pButton (click)="saveData('SUBMITTED')" *ngIf="!isChecker" label="save" icon="pi pi-check" [disabled]="isView==true && rejectedFlag==false"  type="submit" iconPos="left" class="mb-5" style="float:right;"></button>
+    <button pButton (click)="saveData('APPROVED')" *ngIf="isChecker" label="Approve" icon="pi pi-check" [disabled]="isView==true"  type="submit" iconPos="left" class="mb-5 ml-2" style="float:right;margin-left:5px"></button>
+    <button  pButton (click)="saveData('REJECTED')" *ngIf="isChecker" label="Reject" icon="pi pi-check" [disabled]="isView==true"  type="submit" iconPos="left" class="mb-5 ml-2" style="float:right;background:#a20a3a"></button>
+    <button pButton type="button" label="Cancel" [routerLink]="['/report-on-operation']"  class="p-button-raised p-button-secondary mr-2 mb-5"></button>
+</div>
+    
+
+</div>
+
+</form>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

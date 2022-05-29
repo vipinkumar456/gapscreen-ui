@@ -1,28 +1,19 @@
-import { AppCookieService } from './cookieService';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { CompanyInformationFormComponent } from '../vendor/company-information-form/company-information-form.component';
-
+import { Injectable } from "@angular/core";
+import { Observable, Subject, BehaviorSubject } from "rxjs";
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class SharedService {
-  private messageSource = new BehaviorSubject('default message');
+  messageSource = new Subject<any>();
   currentMessage = this.messageSource.asObservable();
   private subject = new Subject<any>();
-  loginUser = this.subject.asObservable();
-
-  constructor(private appCookieService: AppCookieService) {}
-
-  loggedIn(user) {
-    this.subject.next(user);
+  sendClickEvent() {
+    this.subject.next();
   }
-  canDeactivate(
-    component: CompanyInformationFormComponent
-  ): Observable<boolean> | boolean {
-    if (component.infoForm.dirty) {
-      return confirm('Are you sure you want to exit without saving ?');
-    }
-    return true;
+  getClickEvent(): Observable<any> {
+    return this.subject.asObservable();
+  }
+  changeMessage(message: Array<any>) {
+    this.messageSource.next(message)
   }
 }

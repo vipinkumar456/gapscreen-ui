@@ -1,156 +1,179 @@
-import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, subscribeOn, map } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, Observable, throwError } from "rxjs";
+import { catchError, subscribeOn, map } from "rxjs/operators";
 import {
   HttpClient,
   HttpHeaders,
   HttpErrorResponse,
   HttpParams,
-} from '@angular/common/http';
-import { SERVER_PATHS } from '../app.constant';
-import { DomSanitizer } from '@angular/platform-browser';
+  HttpResponse,
+  HttpRequest,
+} from "@angular/common/http";
+import { PATH } from "../app.constants";
+import { SERVER_PATHS } from "../app.constants";
+import { Router } from "@angular/router";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class HttpService {
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  put(dt: any, COMPLIANCE_POST_SUBMIT: string) {
+    throw new Error("Method not implemented.");
+  }
+  private selection$ = new BehaviorSubject(null);
+  headers = new HttpHeaders().set("Content-Type", "application/json");
 
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer,) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   getUrl(url) {
-    return location.protocol + url;
+    let API_URL;
+    if (location.protocol == "http:") {
+      if (
+        window.location.hostname == "localhost" ||
+        window.location.hostname == "3.95.36.75"
+      ) {
+        API_URL = SERVER_PATHS.LOCAL_HTTP + url;
+      } else {
+        window.location.hostname == "ssoedwdcap.edw.obc.co.in"
+          ? (API_URL = SERVER_PATHS.PROD_HTTP + url)
+          : (API_URL = SERVER_PATHS.DEV_HTTP + url);
+      }
+    } else {
+      window.location.hostname == "172.16.15.223"
+        ? (API_URL = SERVER_PATHS.DEV_HTTPS + url)
+        : (API_URL = SERVER_PATHS.PROD_HTTPS + url);
+    }
+    console.log("request url---------->" + API_URL);
+    return API_URL;
   }
 
-  // Post
-  postData(url, data): Observable<any> {
-    let API_URL = this.getUrl(`${SERVER_PATHS.DEV}${url}`);
-    return this.http.post(API_URL, data).pipe(catchError(this.error));
+  postData(data, path): Observable<any> {
+    let url = this.getUrl(path);
+    return this.http.post(url, data).pipe(catchError(this.error.bind(this)));
   }
+  
 
-  // Get
-  getData(url) {
-    let API_URL = this.getUrl(`${SERVER_PATHS.DEV}${url}`);
-
-    return this.http.get(decodeURI(API_URL));
-  }
-
-
-
-  getImage(url: string) {
-    let API_URL = this.getUrl(`${SERVER_PATHS.DEV}${url}`);
-    return this.http.get(decodeURI(API_URL),
-        {
-          headers: new HttpHeaders().set('content-type', 'application/json'),
-          responseType: 'blob',
-          observe: 'response',
-        }
-      )
-      .pipe(
-        map((res: any) => {
-          const blob = res.body;
-          return this.sanitizer.bypassSecurityTrustUrl(
-            URL.createObjectURL(blob)
-          );
-        })
-      );
-  }
-
-// Download 
-download(url): Observable<any> {
-
-  let httpParams = new HttpParams();
-  let API_URL = this.getUrl(`${SERVER_PATHS.DEV}${url}`);
-  return this.http
-    .get(encodeURI(API_URL), {
-      headers: this.headers,
-      responseType: "blob",
-      params: httpParams,
-    })
-
-    .pipe(map((res) => {
-        return res;
-      }),
-      catchError(this.error.bind(this))
-
-    );
-
-}
-
-  // Get Data with Params
-  getDataWithParams(url, data?): Observable<any> {
+  // Read
+  getData(path, data?): Observable<any> {
     let httpParams = new HttpParams();
     if (data) {
       Object.keys(data).forEach(function (key) {
         httpParams = httpParams.append(key, data[key]);
       });
     }
-    let API_URL = this.getUrl(`${SERVER_PATHS.DEV}${url}`);
+    let url = this.getUrl(path);
+    return this.http.get(encodeURI(url), { params: httpParams }).pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError(this.error.bind(this))
+    );
+  }
 
-    return this.http.get(encodeURI(API_URL), {
-      params: httpParams,
-    });
+  // Read By ID
+  getDataById(path, id): Observable<any> {
+    let url = this.getUrl(path);
+    return this.http.get(url).pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError(this.error.bind(this))
+    );
   }
 
   // Update
-  updateData(url, data): Observable<any> {
-    let API_URL = this.getUrl(`${SERVER_PATHS.DEV}${url}`);
-
-    return this.http
-      .put(API_URL, data, { headers: this.headers })
-      .pipe(catchError(this.error));
+  updateData(data, path): Observable<any> {
+    let url = this.getUrl(path);
+    return this.http.put(url, data, { headers: this.headers }).pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError(this.error.bind(this))
+    );
   }
-
-  statusData(url): Observable<any> {
+  patch(data, path): Observable<any> {
+    let url = this.getUrl(path);
+    return this.http
+      .patch(url, data, { headers: this.headers })
+      .pipe(catchError(this.error.bind(this)));
+  }
+  markInactive(path): Observable<any> {
+    let url = this.getUrl(path);
+    return this.http
+      .put(url, {}, { headers: this.headers })
+      .pipe(catchError(this.error.bind(this)));
+  }
+  download(path, data?): Observable<any> {
     let httpParams = new HttpParams();
-    return this.http.patch(encodeURI(`${SERVER_PATHS.DEV}${url}`), {
-      params: httpParams,
-    });
-
-  }
-  // Update
-  patchData(url, data): Observable<any> {
-    let API_URL = this.getUrl(`${SERVER_PATHS.DEV}${url}`);
-
+    if (data) {
+      Object.keys(data).forEach(function (key) {
+        httpParams = httpParams.append(key, data[key]);
+      });
+    }
+    let url = this.getUrl(path);
     return this.http
-      .patch(API_URL, data, { headers: this.headers })
-      .pipe(catchError(this.error));
+      .get(encodeURI(url), {
+        headers: this.headers,
+        responseType: "blob",
+        params: httpParams,
+      })
+      .pipe(
+        map((res) => {
+          return res;
+        }),
+        catchError(this.error.bind(this))
+      );
+  }
+  // Delete
+  deleteData(path): Observable<any> {
+    let url = this.getUrl(path);
+    return this.http.delete(url).pipe(catchError(this.error.bind(this)));
   }
 
-  // Delete
-  deleteData(url): Observable<any> {
-    let API_URL = this.getUrl(`${SERVER_PATHS.DEV}${url}`);
-
-    return this.http.delete(API_URL).pipe(catchError(this.error));
+  deleteWithData(data, path): Observable<any> {
+    let url = this.getUrl(path);
+    // let option=new HttpRequest()
+    let options={headers:new HttpHeaders(),body:data}
+    return this.http.delete(url,options).pipe(catchError(this.error.bind(this)));
   }
 
   // Handle Errors
   error(error: HttpErrorResponse) {
-    if (typeof error == 'string') {
-      return throwError(error);
+    let errorMessage = "";
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = error.error.message;
     } else {
-      let errorMessage = {};
-      if (error.error instanceof ErrorEvent) {
-        errorMessage = error.error;
-      } else {
-        errorMessage = { code: error.status, message: error.error };
-      }
-      return throwError(errorMessage);
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
+    // console.log(errorMessage);
+    return throwError(error.error ? error.error : errorMessage);
   }
 
-  // Post
-  postDataSEarch(url, data): Observable<any> {
-    let API_URL = this.getUrl(`${SERVER_PATHS.DEV_SEARCH}${url}`);
-    return this.http.post(API_URL, data).pipe(catchError(this.error));
+  getSelectionObs(): Observable<any> {
+    return this.selection$.asObservable();
   }
 
-  // Get
-  getDataSearch(url) {
-    let API_URL = this.getUrl(`${SERVER_PATHS.DEV_SEARCH}${url}`);
-
-    return this.http.get(decodeURI(API_URL));
+  setSelectionObs(selection: any) {
+    this.selection$.next(selection);
   }
 
-
+  get(path, param?): Promise<string> {
+    let url = this.getUrl(path);
+    return this.http
+      .get(url, {
+        headers: this.headers,
+        responseType: "text",
+      })
+      .toPromise();
+  }
+  post(path, param: Array<any>): Promise<string> {
+    let url = this.getUrl(path);
+    return this.http
+      .post(
+        url,
+        { inputList: param },
+        { headers: this.headers, responseType: "text" }
+      )
+      .toPromise();
+  }
 }

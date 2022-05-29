@@ -1,0 +1,74 @@
+<div *ngIf="type=='question'">
+  <div class="question-modal">
+    <div class="modal-header">
+      <h4  id="modal-basic-title">Add New Question</h4>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form>
+        <div class="row">
+          <div class="col-12 inputQuestion mt-3"  style="align-items: baseline;">
+            <label for="note" class="font-semibold">Question</label>
+            <textarea cols="42" autoResize="autoResize" pInputTextarea></textarea>
+          </div>
+        </div>
+        <div class="text-center my-4">
+          <a href="">Add More Questions</a>
+        </div>
+        <div class="text-center my-3">
+          <button type="button" class="btn cancel" (click)="close()">CANCEL</button>
+          <button type="button" class="btn save">ADD</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="type=='alert'">
+  <div class="question-modal">
+    <div class="modal-header">
+      <h4  id="modal-basic-title">Alert</h4>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <p>Do you want latest version of Document?</p>
+        <div class="text-center my-3">
+          <button type="button" class="btn no" (click)="close()">NO</button>
+          <button type="button" class="btn save">YES</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="type=='rejection'">
+  <div class="question-modal">
+    <div class="modal-header">
+      <h4  id="modal-basic-title">Reason for Rejection</h4>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form>
+        <div class="row">
+          <div class="col-12 inputQuestion mt-3"  style="align-items: baseline;">
+            <label for="note" class="font-semibold">Message</label>
+            <textarea cols="42" autoResize="autoResize" pInputTextarea></textarea>
+          </div>
+        </div>
+        <div class="text-center my-4">
+          <button type="button" class="btn cancel" (click)="close()">CANCEL</button>
+          <button type="button" class="btn save">SUBMIT</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

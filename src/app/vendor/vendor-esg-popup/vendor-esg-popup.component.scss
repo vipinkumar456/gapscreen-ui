@@ -1,0 +1,19 @@
+.vendor-esg-popup{
+    .esg-text{
+        text-align: center;
+        p{
+            font-size: 20px;
+            font-weight: 400;
+            color: #000;
+        }
+        .orange{
+            color: #ec8412;
+        }
+        
+    }
+    .image{
+        display: flex;
+        justify-content: center;
+        padding: 10px 0 20px 0;
+    }
+}

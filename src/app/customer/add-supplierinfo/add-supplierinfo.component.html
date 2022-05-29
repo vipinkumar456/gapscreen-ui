@@ -1,0 +1,224 @@
+<div class="add-supplier-info">
+    <form [formGroup]="supplierInfo">
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <span>Supplier Information</span>
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-3 form-group">
+                                <label for="">SupplierName <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="supplierName">
+                                <div app-errors class="error-msg" [control]="supplierInfo.get('supplierName')"
+                                    label="supplier name"></div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Unique Code<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="uniqueCode" class="form-control">
+                                <div app-errors class="error-msg" [control]="f.uniqueCode" label="Unique Code"></div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Payment Terms<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="paymentTerms" class="form-control">
+                                <div app-errors class="error-msg" [control]="f.paymentTerms" label="Payment Terms">
+                                </div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Currency<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="currency" class="form-control">
+                                <div app-errors class="error-msg" [control]="f.currency" label="Currency"></div>
+
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3 form-group">
+                                <label for="">Delivery Period <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="deliveryPeriod"
+                                    name="deliveryPeriod">
+                                <div app-errors class="error-msg" [control]="f.deliveryPeriod" label="Delivery Period">
+                                </div>
+                                <!-- <div app-errors class="error-msg" [control]="f.companyName" [submit]="formSubmitAttempt" label="company name"></div> -->
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Minimum Order Total<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="minimumOrderTotal" class="form-control">
+                                <div app-errors class="error-msg" [control]="f.minimumOrderTotal"
+                                    label="Minimum Order Total"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <span>Contact Information</span>
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="row" formGroupName="contactInformation">
+                            <div class="col-md-3 form-group">
+                                <label for="">Email Address<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="emailAddress" class="form-control">
+                                <div app-errors class="error-msg"
+                                    [control]="supplierInfo.controls['contactInformation'].get('emailAddress')"
+                                    label="Email"></div>
+                                <!-- <div class="error-msg" *ngIf="supplierInfo.controls['contactInformation'].get('emailAddress') && supplierInfo.controls['contactInformation'].get('emailAddress').errors?.required">
+                                    Email is required
+                                </div> -->
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Phone Number<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="phoneNumber" formControlName="phoneNumber"  (keypress)="numberOnly($event)" 
+                                    [ng2TelInputOptions]="{initialCountry:countryCode,separateDialCode:true}"
+                                    (hasError)="onError($event)" (countryChange)="onCountryChange($event)" ng2TelInput
+                                    class="form-control">
+                                <div app-errors class="error-msg"
+                                    [control]="supplierInfo.controls['contactInformation'].get('phoneNumber')"
+                                    label="Phone Number"></div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Name<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="name" class="form-control">
+                                <div app-errors class="error-msg"
+                                    [control]="supplierInfo.controls['contactInformation'].get('name')" label="Name">
+                                </div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Local Address<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="localAddress" class="form-control">
+                                <div app-errors class="error-msg"
+                                    [control]="supplierInfo.controls['contactInformation'].get('localAddress')"
+                                    label="Local Address"></div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Phone Number<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="mobileNumber"  (keypress)="numberOnly($event)" 
+                                    [ng2TelInputOptions]="{initialCountry:countryCode,separateDialCode:true}"
+                                    (hasError)="onError($event)" (countryChange)="onCountryChange($event)" ng2TelInput
+                                    class="form-control">
+                                <!-- <div app-errors class="error-msg" [control]="supplierInfo.controls['contactInformation'].get('phoneNumber')" label="Phone Number"></div> -->
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Business Registration Number<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="businessRegistationNumber" class="form-control">
+                                <div app-errors class="error-msg"
+                                    [control]="supplierInfo.controls['contactInformation'].get('businessRegistationNumber')"
+                                    label="Business Registration Number"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <span>Bank Details</span>
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="row" formGroupName="bankDetails">
+                            <div class="col-md-3 form-group">
+                                <label for="">IBAN<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="iban" class="form-control">
+                                <div app-errors class="error-msg"
+                                    [control]="supplierInfo.controls['bankDetails'].get('iban')" label="IBAN"></div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Account Number<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="accountNumber" class="form-control">
+                                <div app-errors class="error-msg"
+                                    [control]="supplierInfo.controls['bankDetails'].get('accountNumber')"
+                                    label="Account Number"></div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Account Holder Name<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="accountHolderName" class="form-control">
+                                <div app-errors class="error-msg"
+                                    [control]="supplierInfo.controls['bankDetails'].get('accountHolderName')"
+                                    label="Account Holder Name"></div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Bank Name<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="bankName" class="form-control">
+                                <div app-errors class="error-msg"
+                                    [control]="supplierInfo.controls['bankDetails'].get('bankName')" label="Bank Name">
+                                </div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Bank Address<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="bankAddress" class="form-control">
+                                <div app-errors class="error-msg"
+                                    [control]="supplierInfo.controls['bankDetails'].get('bankAddress')"
+                                    label="Bank Address"></div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">PAN<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="pan" class="form-control">
+                                <div app-errors class="error-msg"
+                                    [control]="supplierInfo.controls['bankDetails'].get('pan')" label="PAN"></div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">ABA<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="aba" class="form-control">
+                                <div app-errors class="error-msg"
+                                    [control]="supplierInfo.controls['bankDetails'].get('aba')" label="ABA"></div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Swift/ BIC Code<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="swiftBicCode" class="form-control">
+                                <div app-errors class="error-msg"
+                                    [control]="supplierInfo.controls['bankDetails'].get('swiftBicCode')"
+                                    label="Swift/BIC Code"></div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">IFSC Code<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="ifscCode" class="form-control">
+                                <div app-errors class="error-msg"
+                                    [control]="supplierInfo.controls['bankDetails'].get('ifscCode')" label="IFSC Code">
+                                </div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Sort Code<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="sortCode" class="form-control">
+                                <div app-errors class="error-msg"
+                                    [control]="supplierInfo.controls['bankDetails'].get('sortCode')" label="Sort Code">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label for="">Note</label>
+                                    <textarea class="form-control" formControlName="note" rows="5"
+                                    autoResize="autoResize" pInputTextarea></textarea>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="">Purchase Order Conditions</label>
+                                    <textarea class="form-control" rows="5" formControlName="purchaseOrderConditions"
+                                    autoResize="autoResize" pInputTextarea></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons mt-5 mb-5">
+                <button class="btn save" [routerLink]="['/customer/supplier-customer-information']">CANCEL</button>
+                <button class="btn next " (click)="submit()">SUBMIT</button>
+            </div>
+        </div>
+    </form>
+
+</div>

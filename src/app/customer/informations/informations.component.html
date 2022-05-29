@@ -1,0 +1,82 @@
+<div class="information mt-5">
+    <form [formGroup]="informationForm">
+        <div class="row information-row">
+            <div class="col-6 input-tab">
+                <div class="col-md-12 mt-2">
+                    <div class="inputInv form-group">
+                        <label for="Student"  >Company Name</label>
+                        <input type="text" class="contacttext" pInputText formControlName='companyName'
+                            [ngClass]="{'is-invalid':formSubmitAttempt && f.companyName.errors}">
+                    </div>
+                    <div app-errors class="error-msg" [control]="f.companyName" [submit]="formSubmitAttempt"
+                        label="Company Name">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="inputInv form-group">
+                        <label for="Student" >Legal Name</label>
+                        <input type="text" class="contacttext" pInputText formControlName='legalName'
+                            [ngClass]="{'is-invalid':formSubmitAttempt && f.legalName.errors}">
+                    </div>
+                    <div app-errors class="error-msg" [control]="f.legalName" [submit]="formSubmitAttempt"
+                        label="Legal Name">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="inputInv form-group">
+                        <label for="Student"  >Legal Address</label>
+                        <input type="text" class="contacttext" pInputText formControlName='legalAddress'
+                        [ngClass]="{'is-invalid':formSubmitAttempt && f.legalAddress.errors}">
+                </div>
+                <div app-errors class="error-msg" [control]="f.legalAddress" [submit]="formSubmitAttempt"
+                    label="Legal Address">
+                </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="inputInv form-group">
+                        <label for="Student" >Registration  No.</label>
+                            <input type="text" class="contacttext" pInputText formControlName='registrationNumber'
+                            [ngClass]="{'is-invalid':formSubmitAttempt && f.registrationNumber.errors}">
+                    </div>
+                    <div app-errors class="error-msg" [control]="f.registrationNumber" [submit]="formSubmitAttempt"
+                        label="Registration Number">
+                    </div>
+                </div>
+                <div class="col-md-12 invite-digi-phone">
+                    <div class="inputInv form-group">
+                        <label for="Student" >Phone Number</label>
+                        <input type="text" class="contacttext" pInputText formControlName='phoneNumber' (keypress)="numberOnly($event)"
+                        [ng2TelInputOptions]="{initialCountry:countryCode,separateDialCode:true}"
+                            (hasError)="onError($event)" (countryChange)="onCountryChange($event)" ng2TelInput
+                            [ngClass]="{'is-invalid':formSubmitAttempt && f.phoneNumber.errors}">
+                    </div>
+                    <div app-errors class="error-msg" [control]="f.phoneNumber" [submit]="formSubmitAttempt"
+                        label="Phone Number">
+                    </div>
+                    <div class="error-msg" *ngIf="f.phoneNumber.touched && !hasError">
+                        Invalid Phone Number
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+
+            </div>
+            <div class="col-5 information-img" *ngIf="imgUrl">
+                <img [src]="imgUrl" class="ascopeImg">
+                <button class="btn-logo" (click)="upload()">Change Logo</button>
+            </div>
+            <div class="col-5 information-img" *ngIf="!imgUrl">
+                <img src="../../../assets//images/dammy.jpg" class="ascope-img">
+                <button class="btn-logo" (click)="upload()">Upload Logo</button>
+            </div>
+        </div>
+        <div class="buttons mt-5">
+            <button class="btn save" (click)="onClear();">CANCEL</button>
+            <button  class="btn next"  (click)="saveCompanyBasicDetails();">SAVE CHANGES</button>
+            <!-- <button   [ngClass]="{'btn next' : toggle, 'btn save': !toggle}" (click)="saveCompanyBasicDetails();">SAVE CHANGES</button> -->
+
+        </div>
+    </form>
+
+    <input type="file" style="visibility: hidden; height: 0px;width: 0px;" max="1" (change)="uploadFile()" #file>
+</div>

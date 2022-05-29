@@ -1,0 +1,130 @@
+<div class="bank-compliance">
+    <div class="bank-table mt-3 mb-4">
+        <div class="bank-thead">
+            <h1>Key Information</h1>
+        </div>
+        <div class="bank-tbody">
+            <!-- <div class="left"> -->
+                <div class="grid flex-box">
+                    <div class="row">
+                    <div class="col-6 paddings"  *ngFor="let data of  dashboardData ">
+                        <div class="icons">
+                            <img src="../../../assets/images/black-arrow.png" alt="">
+                        </div>
+                        <div class="label-text">
+                            <label  class="label" for=""> <a  href={{data.url}}  target="_blank">{{data.name}} </a></label>
+                            <p>(Added to list On: {{ data.listingStartDate | date}})</p>
+                        </div>
+                    </div>
+                </div>
+                    <!-- <div class="col-md-6 paddings">
+                        <div class="icons">
+                            <img src="../../../assets/images/black-arrow.png" alt="">
+                        </div>
+                        <div class="label-text">
+                            <label class="label" > {{data.data}} </label>
+                            <p>{{data.para}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 paddings positionss">
+                        <div class="icons">
+                            <img src="../../../assets/images/black-arrow.png" alt="">
+                        </div>
+                        
+                        <div class="label-text">
+                            <label  class="label" > {{data.data1}} </label>
+                            <p>{{data.para}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 paddings">
+                        <div class="icons">
+                            <img src="../../../assets/images/black-arrow.png" alt="">
+                        </div>
+                        
+                        <div class="label-text">
+                            <label  class="label" > {{data.data2}} </label>
+                            <p>{{data.para}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 paddings positionss">
+                        <div class="icons">
+                            <img src="../../../assets/images/black-arrow.png" alt="">
+                        </div>
+                        
+                        <div class="label-text">
+                            <label  class="label" > {{data.data3}} </label>
+                            <p>{{data.para}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 paddings">
+                        <div class="icons">
+                            <img src="../../../assets/images/black-arrow.png" alt="">
+                        </div>
+                        
+                        <div class="label-text">
+                            <label  class="label" > {{data.data4}} </label>
+                            <p>{{data.para}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 paddings positionss">
+                        <div class="icons">
+                            <img src="../../../assets/images/black-arrow.png" alt="">
+                        </div>
+                        
+                        <div class="label-text">
+                            <label  class="label" > {{data.data}} </label>
+                            <p>{{data.para}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 paddings">
+                    </div>
+                    <div class="col-md-6 paddings positionss">
+                        <div class="icons">
+                            <img src="../../../assets/images/black-arrow.png" alt="">
+                        </div>
+                        
+                        <div class="label-text">
+                            <label  class="label" > {{data.data}} </label>
+                            <p>{{data.para}}</p>
+                        </div>
+                    </div> -->
+                </div>
+
+            <!-- </div> -->
+        </div>
+
+        <div class="b-head">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Sanctions <span>(Matched)</span></h2>
+                </div>
+                <div class="col-md-6">
+                    <h2>Adverse Media <span>(Matched)</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="b-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="">Fitness & Probity: <span>Not Matched</span></label>
+                </div>
+                <div class="col-md-6">
+                    <label for="">Financial Crime: <span>Not Matched</span></label>
+                </div>
+                <div class="col-md-6">
+                    <label for="">Sanctions: <span class="matched" >Matched</span></label>
+                </div>
+                <div class="col-md-6">
+                    <label for="">Fraud: <span class="matched" >Matched</span></label>
+                </div>
+                <div class="col-md-6">
+                    <label for="">Warnings: <span>Not Matched</span></label>
+                </div>
+                <div class="col-md-6">
+                    <label for="">Narcotics: <span>Not Matched</span></label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

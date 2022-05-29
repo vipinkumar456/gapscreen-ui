@@ -1,0 +1,630 @@
+<form class="info-form" [formGroup]="infoForm">
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    Particular Information
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="">Company Name <span class="text-danger" *ngIf="this.vendorSetting?.companyName">*</span> </label>
+                            <input type="text" class="form-control" readonly name="companyName"
+                                formControlName="companyName" placeholder="Company Name">
+                            <div app-errors class="error-msg" [control]="f.companyName" [submit]="formSubmitAttempt"
+                                label="company name"></div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Former Name (if any) <span class="text-danger" *ngIf="this.vendorSetting?.formerName">*</span></label>
+                            <input type="text" formControlName="formerName" class="form-control">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Contact Person <span class="text-danger" *ngIf="this.vendorSetting?.contactPerson">*</span></label>
+                            <input type="text" class="form-control" formControlName="contactPerson">
+                            <div app-errors class="error-msg" [control]="f.contactPerson" [submit]="formSubmitAttempt"
+                                label="Contact Person"></div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Phone Number <span class="text-danger" *ngIf="this.vendorSetting?.phoneNumber">*</span></label>
+                            <div class="input-group">
+                                <!-- <input type="text" class="form-control"> -->
+                                <input #phone type="text" (keypress)="numberOnly($event)" class="form-control w-100" ng2TelInput
+                                    formControlName="phoneNumber" [ng2TelInputOptions]="{initialCountry:countryCode,separateDialCode:true}"
+                                    (hasError)="onError($event)" (countryChange)="onCountryChange($event)"/>
+                            </div>
+                            <div app-errors class="error-msg" [control]="f.phoneNumber" [submit]="formSubmitAttempt"
+                                label="Phone Number"></div>
+                            <div class="error-msg" *ngIf="f.phoneNumber.touched && !hasError">
+                                Invalid Phone Number
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Email Address <span class="text-danger" *ngIf="this.vendorSetting?.emailAddress">*</span></label>
+                            <input type="email" class="form-control" name="emailAddress" readonly
+                                formControlName="emailAddress">
+                            <div app-errors class="error-msg" [control]="f.emailAddress" [submit]="formSubmitAttempt"
+                                label="Email"></div>
+
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Company Registration Number <span class="text-danger" *ngIf="this.vendorSetting?.companyRegistrationNumber">*</span></label>
+                            <input type="text" class="form-control" formControlName="companyRegistrationNumber">
+                            <div app-errors class="error-msg" [control]="f.companyRegistrationNumber"
+                                [submit]="formSubmitAttempt" label="Company Registration Number"></div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Category <span class="text-danger" *ngIf="this.vendorSetting?.category">*</span></label>
+                            <select class="form-select" aria-label="Default select example" formControlName="category">
+                                <option selected disabled value="">Select Category</option>
+                                <option *ngFor="let category of categories " [value]="category">{{category}}</option>
+
+                            </select>
+                            <div app-errors class="error-msg" [control]="f.category" [submit]="formSubmitAttempt"
+                                label="Category"></div>
+
+                        </div>
+
+
+                        <div class="col-md-6 form-group">
+                            <label for="">VAT Registration Number <span class="text-danger" *ngIf="this.vendorSetting?.vatRegistrationNumber">*</span></label>
+                            <input type="text" formControlName="vatRegistrationNumber" class="form-control">
+                            <div app-errors class="error-msg" [control]="f.vatRegistrationNumber"
+                                [submit]="formSubmitAttempt" label="VAT Registration Number"></div>
+
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Duns Number <span class="text-danger" *ngIf="this.vendorSetting?.dunsNumber">*</span></label>
+                            <input type="text" class="form-control" formControlName="dunsNumber">
+                            <div app-errors class="error-msg" [control]="f.dunsNumber"
+                                [submit]="formSubmitAttempt" label="Duns Number"></div>
+                        </div>
+                        <div class="col-md-6 form-group">
+
+                            <label for="">Date of Incorporation <span class="text-danger" *ngIf="this.vendorSetting?.dateOfIncorporation">*</span></label>
+                            <div class="input-group">
+                                <p-calendar class="w-100" [maxDate]="maxDate" dateFormat="dd-mm-yy" [showIcon]="true" 
+                                    inputId="icon" formControlName="dateOfIncorporation"></p-calendar>
+
+                                <!-- <input class="form-control" [maxDate]="maxDate" placeholder="dd-mm-yyyy" name="dp" formControlName="dateOfIncorporation" ngbDatepicker #d="ngbDatepicker"> -->
+                                <!-- <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                                </div> -->
+                            </div>
+                            <!-- <input type="date" class="form-control" formControlName="dateOfIncorporation"> -->
+                            <div app-errors class="error-msg" [control]="f.dateOfIncorporation"
+                                [submit]="formSubmitAttempt" label="Date of Incorporation"></div>
+
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Legal Status <span class="text-danger" *ngIf="this.vendorSetting?.legalStatus">*</span></label>
+                            <select class="form-select" aria-label="Default select example" 
+                                formControlName="legalStatus">
+                                <option selected disabled value="">Select Legal Status</option>
+                                <option *ngFor="let legalStatus of legalStatuses" [value]="legalStatus">{{legalStatus}}
+                                </option>
+                            </select>
+                            <div app-errors class="error-msg" [control]="f.legalStatus" [submit]="formSubmitAttempt"
+                                label="Legal Status"></div>
+
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Website URL <span class="text-danger" *ngIf="this.vendorSetting?.websiteUrl">*</span></label>
+                            <input type="text" class="form-control" formControlName="websiteUrl">
+                            <div app-errors class="error-msg" [control]="f.websiteUrl" [submit]="formSubmitAttempt"
+                                label="Website URL"></div>
+
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Product / Service <span class="text-danger" *ngIf="this.vendorSetting?.productOrService">*</span></label>
+                            <!-- <ng-multiselect-dropdown [placeholder]="'Select Services'" [settings]="dropdownSettings" [data]="productandservices" formControlName="productOrService">
+                            </ng-multiselect-dropdown> -->
+                            <p-multiSelect [options]="productandservices" required formControlName="productOrService"  
+                                class="select-height" ></p-multiSelect>
+                            <div app-errors class="error-msg" [control]="f.productOrService"
+                                [submit]="formSubmitAttempt" label="Product/Service"></div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Annual Revenue in USD <span class="text-danger" *ngIf="this.vendorSetting?.annualRevenueInUsd">*</span></label>
+                            <input type="number" class="form-control" formControlName="annualRevenueInUsd">
+                            <div app-errors class="error-msg" [control]="f.annualRevenueInUsd"
+                                [submit]="formSubmitAttempt" label="Annual Revenue"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Company Logo <span class="text-danger" *ngIf="this.vendorSetting?.companyLogo">*</span></label>
+                            <div class="uploadContainer space-between"  [ngClass]="{  'disable-div': this.companyInfo?.status == 'Submitted'}" >
+
+                                <p class="title"> {{logoname}}</p>
+                                <span class="inline-icon align-middle">
+                            <i *ngIf="logoView" class="icon-view icon" (click)="download()"></i>
+                            <i *ngIf="!disableBtn"class="icon-upload icon" (click)="upload()" ></i>
+                                </span>
+
+                            </div>
+                            <div app-errors class="error-msg" [control]="f.companyLogo"
+                                [submit]="formSubmitAttempt" label="Company Logo"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Addresses
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <h3>Registered Address </h3>
+                    <div class="row" formGroupName="registeredAddress">
+
+                        <div class="col-md-6 form-group">
+                            <label for="">Country <span class="text-danger" *ngIf="this.vendorSetting?.registeredAddress.country">*</span></label>
+                            <select class="form-select" aria-label="Default select example" formControlName="country"
+                                (change)="changeCountry('registered')">
+                                <option selected value="" disabled>Select Country</option>
+                                <option *ngFor="let country of countries" [value]="country.name">{{country.name}}
+                                </option>
+                            </select>
+                            <div class="error-msg"
+                                *ngIf="infoForm.controls['registeredAddress'].get('country') && infoForm.controls['registeredAddress'].get('country').errors?.required">
+                                Country is required
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">City / Town <span class="text-danger" *ngIf="this.vendorSetting?.registeredAddress.city">*</span></label>
+                            <select class="form-select" aria-label="Default select example" formControlName="city">
+                                <option selected value="" disabled>Select City</option>
+                                <option *ngFor="let city of registeredCities" [value]="city.name">{{city.name}}</option>
+                            </select>
+                            <div class="error-msg"
+                                *ngIf="infoForm.controls['registeredAddress'].get('city') && infoForm.controls['registeredAddress'].get('city').errors?.required">
+                                City is required
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Address <span class="text-danger" *ngIf="this.vendorSetting?.registeredAddress.addresses">*</span></label>
+                            <input type="text" class="form-control" formControlName="addresses">
+                            <div class="error-msg"
+                                *ngIf="infoForm.controls['registeredAddress'].get('addresses') && infoForm.controls['registeredAddress'].get('addresses').errors?.required">
+                                Address is required
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Postal Code<span class="text-danger" *ngIf="this.vendorSetting?.registeredAddress.postalCode">*</span></label>
+                            <input type="number" class="form-control" formControlName="postalCode">
+                            <div class="error-msg"
+                                *ngIf="infoForm.controls['registeredAddress'].get('postalCode') && infoForm.controls['registeredAddress'].get('postalCode').errors?.required">
+                                Postal Code is required
+                            </div>
+                        
+                        </div>
+
+                    </div>
+
+                    <h3>Operational Address</h3>
+                    <div class="form-check">
+                        <input class="form-check-input mr-2" type="checkbox" formControlName="isSameAddress"
+                            id="flexCheckDefault" (change)="sameAddressChecked()">
+                        <label class="form-check-label mt-1" for="flexCheckDefault">
+                            Same as Registered Address
+                        </label>
+                    </div>
+
+                    <div class="row" formGroupName="operationalAddress">
+                        <div class="col-md-6 form-group">
+                            <label for="">Country <span class="text-danger" *ngIf="this.vendorSetting?.operationalAddress.country">*</span></label>
+                            <select class="form-select" aria-label="Default select example" formControlName="country"
+                                (change)="changeCountry('Operational')">
+                                <option selected value="" disabled>Select Country</option>
+                                <option *ngFor="let country of countries" [value]="country.name">{{country.name}}
+                                </option>
+                            </select>
+                            <div class="error-msg"
+                                *ngIf="infoForm.controls['operationalAddress'].get('country') && infoForm.controls['operationalAddress'].get('country').errors?.required">
+                                Country is required
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">City / Town <span class="text-danger" *ngIf="this.vendorSetting?.operationalAddress.city">*</span></label>
+                            <select class="form-select" aria-label="Default select example" formControlName="city">
+                                <option selected value="" disabled>Select City</option>
+                                <option *ngFor="let city of oprationalCities" [value]="city.name">{{city.name}}</option>
+                            </select>
+
+                            <div class="error-msg"
+                                *ngIf="infoForm.controls['operationalAddress'].get('city') && infoForm.controls['operationalAddress'].get('city').errors?.required">
+                                City is required
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Address <span class="text-danger" *ngIf="this.vendorSetting?.operationalAddress.addresses">*</span></label>
+                            <input type="text" class="form-control" formControlName="addresses">
+
+                            <div class="error-msg"
+                                *ngIf="infoForm.controls['operationalAddress'].get('addresses') && infoForm.controls['operationalAddress'].get('addresses').errors?.required">
+                                Address is required
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Postal Code <span class="text-danger" *ngIf="this.vendorSetting?.operationalAddress.postalCode">*</span></label>
+                            <input type="number" class="form-control" formControlName="postalCode">
+                            <div class="error-msg"
+                            *ngIf="infoForm.controls['operationalAddress'].get('postalCode') && infoForm.controls['operationalAddress'].get('postalCode').errors?.required">
+                            Postal Code is required
+                        </div>
+                    
+                        </div>
+                    </div>
+
+                    <h3>Previous Address (If Any)</h3>
+
+
+                    <div class="row" formGroupName="previousAddress">
+                        <div class="col-md-6 form-group">
+                            <label for="">Country <span class="text-danger" *ngIf="this.vendorSetting?.previousAddress.country">*</span></label>
+                            <select class="form-select" aria-label="Default select example" formControlName="country"
+                                (change)="changeCountry('Operational')">
+                                <option selected value="" disabled>Select Country</option>
+                                <option *ngFor="let country of countries" [value]="country.name">{{country.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">City / Town  <span class="text-danger" *ngIf="this.vendorSetting?.previousAddress.city">*</span></label>
+                            <select class="form-select" aria-label="Default select example" formControlName="city">
+                                <option selected value="" disabled>Select City</option>
+                                <option *ngFor="let city of oprationalCities" [value]="city.name">{{city.name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Address  <span class="text-danger" *ngIf="this.vendorSetting?.previousAddress.addresses">*</span></label>
+                            <input type="text" class="form-control" formControlName="addresses">
+
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Postal Code  <span class="text-danger" *ngIf="this.vendorSetting?.previousAddress.postalCode">*</span></label>
+                            <input type="number" class="form-control" formControlName="postalCode">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Board of Directors
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+
+                    <p>(Please list all members of the board of directors or partnership)</p>
+                    <div formArrayName="boardOfDirectors">
+                        <ng-container
+                            *ngFor="let director of infoForm.get('boardOfDirectors')['controls'] let i=index;">
+                            <div [formGroupName]="i" class="row">
+                                <div class="col-md-4 form-group">
+                                    <label for="">Full Name <span class="text-danger" *ngIf="this.vendorSetting?.boardOfDirectors.fullName">*</span></label>
+                                    <input type="text" class="form-control" name="fullName" formControlName="fullName">
+                                    <div class="error-msg"
+                                        *ngIf="director.get('fullName').touched && director.get('fullName').errors?.required">
+                                        Full Name is required
+                                    </div>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="">Nationality <span class="text-danger" *ngIf="this.vendorSetting?.boardOfDirectors.nationality">*</span></label>
+                                    <select class="form-select" aria-label="Default select example"
+                                        formControlName="nationality">
+                                        <option selected disabled value="">Select Country</option>
+                                        <option *ngFor="let country of countries" [value]="country.name">
+                                            {{country.name}}</option>
+                                    </select>
+                                    <div class="error-msg"
+                                        *ngIf="director.get('nationality').touched && director.get('nationality').errors?.required">
+                                        Nationality is required
+                                    </div>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="">Country of Residence <span class="text-danger" *ngIf="this.vendorSetting?.boardOfDirectors.countryOfResidence">*</span></label>
+                                    <select class="form-select" aria-label="Default select example"
+                                        formControlName="countryOfResidence">
+                                        <option selected value="" disabled>Select Country</option>
+                                        <option *ngFor="let country of countries" [value]="country.name">
+                                            {{country.name}}</option>
+                                    </select>
+                                    <div class="error-msg"
+                                        *ngIf="director.get('countryOfResidence').touched && director.get('countryOfResidence').errors?.required">
+                                        Country is required
+                                    </div>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="">Indentification No <span class="text-danger" *ngIf="this.vendorSetting?.boardOfDirectors.identificationNumber">*</span></label>
+                                    <input type="text" class="form-control" name="identificationNumber"
+                                        formControlName="identificationNumber">
+                                    <div class="error-msg"
+                                        *ngIf="director.get('identificationNumber').touched && director.get('identificationNumber').errors?.required">
+                                        Passport number is required
+                                    </div>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="">Address <span class="text-danger" *ngIf="this.vendorSetting?.boardOfDirectors.address">*</span></label>
+                                    <input type="text" class="form-control" name="address" formControlName="address">
+                                    <div class="error-msg"
+                                        *ngIf="director.get('address').touched && director.get('address').errors?.required">
+                                        Address is required
+                                    </div>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="">Postal Code <span class="text-danger" *ngIf="this.vendorSetting?.boardOfDirectors.postalCode">*</span></label>
+                                    <input type="number" class="form-control" name="postalCode"
+                                        formControlName="postalCode">
+                                    <div class="error-msg"
+                                        *ngIf="director.get('postalCode').touched && director.get('postalCode').errors?.required">
+                                        Postal Code is required
+                                    </div>
+                                </div>
+
+                                <div class="col" *ngIf="infoForm.get('boardOfDirectors').length>1">
+                                    <button class="btn btn-primery remove" (click)="removeDirector(i)">
+                                        <span aria-hidden="true" class="close">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="col" *ngIf="infoForm.get('boardOfDirectors')['controls'].length < 10">
+                            <a class="add" (click)="addDirectors()">Add More Board of Directors +</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Shareholders
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p>(Please state the name of all shareholders/partners/members who own more than 10% of the company
+                        shares or voting rights or name of any individuals who otherwise exercise control over the
+                        management of the company)</p>
+                    <div formArrayName="shareHolders">
+                        <ng-container *ngFor="let holder of infoForm.get('shareHolders')['controls'] let i=index;">
+                            <div [formGroupName]="i" class="row">
+                                <div class="vendor-share col-md-12">
+                                    <p-radioButton class="share-radio mr-2"  value="company" formControlName="type"> </p-radioButton><span>Company</span> 
+                                    <p-radioButton class="share-radio mr-2" value="individual" formControlName="type"></p-radioButton> <span>Individual</span> 
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="">Company / Full Name (Individual) <span class="text-danger" *ngIf="this.vendorSetting?.shareHolders.companyName">*</span></label>
+                                    <input type="text" class="form-control" name="companyName" formControlName="companyName">
+                                    <div class="error-msg"
+                                        *ngIf="holder.get('companyName').touched  && holder.get('companyName').errors?.required">
+                                        Company/Full Name is required
+                                    </div>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="">% Owned <span class="text-danger" *ngIf="this.vendorSetting?.shareHolders.ownedPercentage">*</span></label>
+                                    <input type="number" class="form-control" min="10" max="100" name="ownedPercentage"
+                                        formControlName="ownedPercentage">
+                                    <div class="error-msg"
+                                        *ngIf="holder.get('ownedPercentage').touched && holder.get('ownedPercentage').errors?.required">
+                                        Percentage is required
+                                    </div>
+                                    <div class="error-msg"
+                                        *ngIf="holder.get('ownedPercentage').touched && holder.get('ownedPercentage').errors?.min || formSubmitAttempt && holder.get('ownedPercentage').errors?.max">
+                                        Percentage value should be between 10 and 100
+                                    </div>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label *ngIf="holder.get('type').value=='company'" for="">Country of Incorporation <span class="text-danger" *ngIf="this.vendorSetting?.shareHolders.countryOfIncorporation">*</span></label>
+                                    <label *ngIf="holder.get('type').value=='individual'" for="">Country of Residence <span class="text-danger" *ngIf="this.vendorSetting?.shareHolders.personalIdentification">*</span></label>
+                                    <select class="form-select" aria-label="Default select example"
+                                        formControlName="countryOfIncorporation">
+                                        <option selected value="" disabled>Select Country</option>
+                                        <option *ngFor="let country of countries" [value]="country.name">
+                                            {{country.name}}</option>
+                                    </select>
+                                    <div class="error-msg"
+                                        *ngIf="holder.get('countryOfIncorporation').touched && holder.get('countryOfIncorporation').errors?.required">
+                                        Country Name is required
+                                    </div>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="">Indentification No <span class="text-danger" *ngIf="this.vendorSetting?.shareHolders.identificationNumber">*</span></label>
+                                    <input type="text" class="form-control" name="identificationNumber"
+                                        formControlName="identificationNumber">
+                                    <div class="error-msg"
+                                        *ngIf="holder.get('identificationNumber').touched && holder.get('identificationNumber').errors?.required">
+                                        Identification number is required
+                                    </div>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="">Address <span class="text-danger" *ngIf="this.vendorSetting?.shareHolders.address">*</span></label>
+                                    <input type="text" class="form-control" name="address" formControlName="address">
+                                    <div class="error-msg"
+                                        *ngIf="holder.get('address').touched && holder.get('address').errors?.required">
+                                        Address is required
+                                    </div>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="">Postal Code <span class="text-danger" *ngIf="this.vendorSetting?.shareHolders.postalCode">*</span></label>
+                                    <input type="number" class="form-control" name="postalCode"
+                                        formControlName="postalCode">
+                                    <div class="error-msg"
+                                        *ngIf="holder.get('postalCode').touched && holder.get('postalCode').errors?.required">
+                                        PostalCode is required
+                                    </div>
+                                </div>
+
+                                <div class="col" *ngIf="infoForm.get('shareHolders').length>1">
+                                    <button class="btn btn-primery remove" aria-label="close" title="remove shareholder"
+                                        (click)="removeShareholder(i)">
+                                        <span aria-hidden="true" class="close">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="col" *ngIf="infoForm.get('shareHolders')['controls'].length < 10">
+                            <a class="add" (click)="addShareholders()">Add More Shareholders</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    Parent Company
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="row" formGroupName="parentCompany">
+                        <div class="col-md-6 form-group">
+                            <label for="">Parent Company Name  <span class="text-danger" *ngIf="this.vendorSetting?.parentCompany">*</span></label>
+                            <input type="text" class="form-control" formControlName="name">
+                            <!-- <div app-errors class="error-msg" [control]="g.parentsCompanyName"
+                                [submit]="formSubmitAttempt" label="parent Company">
+                            </div> -->
+                            <div class="error-msg"
+                                *ngIf="infoForm.controls['parentCompany'].get('name') && infoForm.controls['parentCompany'].get('name').errors?.required">
+                                Parent Company Name
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Country of Domicile <span class="text-danger" *ngIf="this.vendorSetting?.countryOfDomicile">*</span></label>
+                            <input type="text" class="form-control" formControlName="countryOfDomicile">
+                                <div class="error-msg"
+                                *ngIf="infoForm.controls['parentCompany'].get('countryOfDomicile') && infoForm.controls['parentCompany'].get('countryOfDomicile').errors?.required">
+                                Country Of Domicile
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    Branches in other Country
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div formArrayName="branchInOtherCountry">
+                        <ng-container
+                            *ngFor="let branch of infoForm.get('branchInOtherCountry')['controls']; let i=index">
+                            <div [formGroupName]="i" class="row">
+                                <div class="col-md-6">
+                                    <label for="">Branch in Other Country <span class="text-danger" *ngIf="this.vendorSetting?.branch.branchInOtherCountry">*</span></label>
+                                    <input type="text" class="form-control" name="branch" formControlName="branch">
+                                </div>
+                                <div class="col" *ngIf="infoForm.get('branchInOtherCountry').length>1">
+                                    <button class="btn btn-primery remove" (click)="removeBranch(i)">
+                                        <span aria-hidden="true" class="close">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="col" *ngIf="infoForm.get('branchInOtherCountry')['controls'].length < 10">
+                            <a class="add" (click)="addBranches()">Add More Branch</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSeven">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                    Bank Information
+                </button>
+            </h2>
+
+            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="row" formGroupName="bankDetails">
+
+                        <div class="col-md-6 form-group">
+                            <label for="">Bank Name <span class="text-danger" *ngIf="this.vendorSetting?.bankDetails.bankName">*</span></label>
+                            <input type="text" class="form-control" formControlName="bankName">
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="">Account Number <span class="text-danger" *ngIf="this.vendorSetting?.bankDetails.accountNumber">*</span></label>
+                            <input type="number" class="form-control" formControlName="accountNumber">
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="">Beneficiary Name <span class="text-danger" *ngIf="this.vendorSetting?.bankDetails.beneficiaryName">*</span></label>
+                            <input type="text" class="form-control" formControlName="beneficiaryName">
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="">IBAN <span class="text-danger" *ngIf="this.vendorSetting?.bankDetails.iban">*</span></label>
+                            <input type="text" class="form-control" formControlName="iban">
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="">Swift Code <span class="text-danger" *ngIf="this.vendorSetting?.bankDetails.swiftCode">*</span></label>
+                            <input type="text" class="form-control" formControlName="swiftCode">
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <input class="form-check-input mr-2" type="checkbox" formControlName="consent" id="consent">
+                            <label class="form-check-label ml-2 mt-1" for="flexCheckDefault">
+                                I Agree to verify my bank account details
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="buttons mb-4">
+        <ng-container *ngIf="companyInfo?.status != 'Submitted'">
+            <ng-container *ngIf="!companyInfo">
+                <button class="btn save" type="button" (click)="updateCompanyInfo('save')">SAVE</button>
+                <button class="btn next" type="button" (click)="updateCompanyInfo('next')">SAVE & NEXT</button>
+            </ng-container>
+    
+            <ng-container *ngIf="companyInfo">
+                <button class="btn save" type="button" (click)="updateCompanyInfo('save')">UPDATE</button>
+                <button class="btn next" type="button" (click)="updateCompanyInfo('next')">UPDATE & NEXT</button>
+                <button class="btn next bg-success" type="button" (click)="skip()">SKIP & NEXT</button>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngIf="companyInfo?.status == 'Submitted'">
+            <button class="btn save" type="button" (click)="goNext()">Next</button>
+        </ng-container>
+    </div>
+</form>
+
+<input type="file" accept="image/png, image/jpeg,image/jpg" style="visibility: hidden; height: 0px;width: 0px;" max="1"
+    (change)="uploadFile()" #file>

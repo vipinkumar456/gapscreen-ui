@@ -1,0 +1,102 @@
+<div class="invite-customer">
+    <div class="heading  mt-4">
+        <div class="left">
+            <h1>Invite  Vendor</h1>
+        </div>
+        <div class="right">
+            <button class="btn" [routerLink]="['/customer/invite']">
+                Invite To DigiComp+
+            </button>
+        </div>
+    </div>
+    <div class="grid flexbox mt-4" *ngIf="regStatusData">
+        <div class="col-md-3 card">
+            <div class="">
+                <div class="card-body">
+                    <h3 class="bluee">{{invited}}
+                        <span> Invited</span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 card">
+            <div class="">
+                <div class="card-body">
+                    <h3 class="greenn">{{register}}
+                        <span>Registered</span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 card">
+            <div class="">
+                <div class="card-body">
+                    <h3 class="yelloww">{{pending}}
+                        <span>Approval Pending</span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    <div class="customer mt-4">
+        <p-table [columns]="customerHeaders" [value]="invitedVendorList" class="p-table mt-5"
+            responsiveLayout="scroll" [resizableColumns]="true" [paginator]="true" [rows]="10"
+            [showCurrentPageReport]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[10,25,50]">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <ng-container *ngFor="let col of columns">
+                        <th pSortableColumn={{col.name}}>{{col.header}}<img *ngIf="col.sort" class=" topbottom"
+                                src="../../assets/images/arrow_drop_up-24px@2x.png">
+                        </th>
+                    </ng-container>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-vendor>
+                <tr>
+                    <!-- <td>{{vendor.companyId}}</td> -->
+                    <td>{{vendor.name}}</td>
+                    <td>{{vendor.fullName}}</td>
+                    <td>{{vendor.emailId}}</td>
+                    <!-- <td>{{vendor.country}}</td> -->
+                    <td>{{vendor.phoneNumber}}</td>
+                    <td>
+                        <div class="status" [ngClass]="[vendor.status=='Not Started' ? 'bg-notStarted' : '',  
+                            vendor.status=='Link Opened' ? 'bg-blue' : '', vendor.status=='Invited' ? 'bg-blue' : '',
+                            vendor.status=='Approval Pending' ? 'bg-yellow' : '', vendor.status=='Registered' ? 'bg-green' : '', vendor.status=='Approved' ? 'bg-green' : '', vendor.status=='Rejected' ? 'bg-red' : '',
+                            vendor.status=='Profile Incomplete' ? 'bg-pink' :'',vendor.status=='RFI' ? 'bg-yellow' :'',vendor.status=='Pending for Approval' ? 'bg-yellow' :''
+                            ]">
+                            
+                            <span>{{vendor.status}}</span>
+                        </div>
+                        
+                    </td>
+                    <td>
+
+                        <!-- <div class="inline-img">
+                            <a (click)="vendorOpen(vendor.companyId)" ><i class="icon-view cursor-pointer"></i></a>
+                        </div> -->
+                        
+                        <div class="inline-img" *ngIf="vendor.status=='Registered' || vendor.status=='Pending for Approval'  || vendor.status=='Approval Pending' ||  vendor.status=='RFI'">
+                            <a (click)="vendorOpen(vendor.companyId)" ><i class="icon-view cursor-pointer"></i></a>
+                        </div>
+                    </td>
+                    <td>
+                        <!-- <p-inputSwitch class="contacttext" [(ngModel)]="checked"></p-inputSwitch>  -->
+                        <div  *ngIf="vendor.status=='Not Started' || vendor.status=='Registered' || 
+                        vendor.status=='Approval Pending' || vendor.status=='Pending for Approval'  || vendor.status=='RFI'"   >
+                        <p-inputSwitch class="contacttext positions" [(ngModel)]="vendor.isActive" (onChange)="changeStatus(vendor)"></p-inputSwitch>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+
+</div>

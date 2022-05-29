@@ -1,0 +1,60 @@
+<div class="vendor-dashboard-screen">
+<div class="row p-3 vendor-screen ">
+    <div class="col-md-9">
+        <div class="settingForm">
+            <div class="contactheading">
+                <h2 class="font-bold text-2xl">Dashboard</h2>
+            </div>
+            <p-tabView>
+                <p-tabPanel header="Overview" >
+                    <app-overview></app-overview>
+                </p-tabPanel>
+                <p-tabPanel header="Directors & Shareholders" class="mt-4">
+                    <app-directors></app-directors>
+                </p-tabPanel>
+                <p-tabPanel header="Financial" class="mt-4">
+                    <app-financial></app-financial>
+                </p-tabPanel>
+                <p-tabPanel header="ESG" class="mt-4">
+                    <app-esg></app-esg>
+                </p-tabPanel>
+                <p-tabPanel header="Questionnaire" class="mt-4">
+                    <app-questionnaire-screen></app-questionnaire-screen>
+                </p-tabPanel>
+                <p-tabPanel header="Survey" class="mt-4">
+                    <app-survey></app-survey>
+                </p-tabPanel>
+            </p-tabView>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="right-container  pb-5">
+
+            <div class="invited-images">
+                <div class="image">
+                    <img src="../../../assets/images/imvited-img.png" alt="">
+                </div>
+            </div>
+
+            <div class="dashboardHeading mt-3 pt-3 pb-3">
+                <p class="text-2xl fontbold cursor-pointer" style="cursor: pointer;">DigiComp Message</p>
+                <p class="font-bold text-base text-rose-700 mt-1 font-base-size p-red ">View All</p>
+            </div>
+
+            <div class="image-containers">
+                <ng-container *ngFor="let col of adverseMedia">
+                    <div class="row pt-3 pb-3 m-2 bg-white" style="border:1px solid lightgray">
+                        <div class="col-3">
+                            <img src="{{col.img}}">
+                        </div>
+                        <div class="col-9">
+                            {{col.title}} <br>
+                            <p class="text-gray-400">12-Dec-2021</p>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

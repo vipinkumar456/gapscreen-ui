@@ -1,0 +1,35 @@
+<div class="customer-regulations mt-3">
+    <div class="heading">
+        <h1>Regulations</h1>
+    </div>
+
+    <div class="wrapper">
+        <div class="conditions">
+            <h3>Terms & Conditions</h3>
+        </div>
+        <div class="arrow">
+            <i class="icon-tick-circle icon"></i>
+            <span>Accepted</span>
+        </div>
+    </div>
+    <div class="wrapper borders">
+        <div class="conditions">
+            <h3>Privacy Policy</h3>
+        </div>
+        <div class="arrow">
+            <i class="icon-tick-circle icon"></i>
+            <span>Accepted</span>
+        </div>
+    </div>
+    <form [formGroup]="Form" >
+        <h3 class="mb-2 comment-section">Any Comment / Message</h3>
+        <textarea class="regulation-comment" autoResize="autoResize" formControlName="remark"   [rows]="5" [cols]="80"   pInputTextarea></textarea>
+        
+    </form>
+    <div class="buttons">
+        <div class="mr-4 btn save" (click)="back()">Back</div>
+        <div class="btn save" (click)="rejectData()">REJECT</div>
+        <div class="btn next"  (click)="approveData()">APPROVE</div>
+    </div>
+</div>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

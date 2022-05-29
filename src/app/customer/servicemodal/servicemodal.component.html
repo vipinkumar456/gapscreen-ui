@@ -1,0 +1,46 @@
+
+<div class="company-modal" *ngIf="!isSent">
+    <div class="modal-header">
+      <h4  id="modal-basic-title">Add Service</h4>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+       
+            <!-- <div class="inputInv mt-3"  style="align-items: baseline;">
+                <label for="Student" class="font-semibold" style="width: 22%;">Email</label>
+                
+            </div> -->
+            <div class="col-3 inputInv">
+                <label for="Student" class="font-semibold" >Service Name</label>
+            </div>
+            <div class="col-7">
+                <input type="text" class="contacttext"  pInputText>
+            </div>
+            <div class="inv-footer mt-5 mb-5">
+                <button class="btn  cancel-btn" (click)="close()">CANCEL</button>
+                <button class="btn save btn-primery" (click)="save()">SUBMIT</button>
+            </div>    
+       
+      </div>
+    </div>
+  </div>
+  
+  <div class="company-modal" *ngIf="isSent">
+    <div class="modal-header">
+      <h4  id="modal-basic-title">Invite</h4>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+       <p style="color:green" class="invitemsg">Your Reques to add a new service is captured and same will be<br>added post validation from DigiComp backend team.</p> 
+      </div>
+      <div class="inv-footer">
+        <button class="btn  cancel-btn text-xl font-semibold" style="width: 14%;" (click)="close()">OK</button>
+    </div>   
+    </div>
+  </div>

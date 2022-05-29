@@ -1,0 +1,55 @@
+
+<div class="modal-header">
+    <p class="modal-title font-bold text-2xl" id="modal-basic-title" *ngIf="isNew">Add User</p>
+    <p class="modal-title font-bold text-2xl" id="modal-basic-title" *ngIf="isEdit">Edit User</p>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="userForm">
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="">Name <span class="text-danger">*</span></label>
+                <input type="text" formControlName="username" class="form-control">
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="">Email <span class="text-danger"></span></label>
+                <input type="email" formControlName="email" class="form-control">
+                <div app-errors class="error-msg" [control]="f.email" [submit]="formSubmitAttempt" label="Email"></div>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="">Phone Number <span class="text-danger">*</span></label>
+                <div class="input-group">
+                    <!-- <input type="text" class="form-control"> -->
+                    <input #phone type="text" formControlName="mobileNumber" class="form-control w-100" ng2TelInput [ng2TelInputOptions]="{initialCountry: 'in'}" (hasError)="onError($event)" />
+                </div>
+                <div app-errors class="error-msg" [control]="f.mobileNumber"  [submit]="formSubmitAttempt"  label="Phone Number"></div>
+                <div class="error-msg" *ngIf="f.mobileNumber.touched && !hasError">
+                    Invalid Phone Number
+                </div>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="">Category <span class="text-danger">*</span></label>
+            <p-multiSelect [options]="allRoles"   formControlName="eroles"  display="chip"></p-multiSelect>
+            <!-- <p-multiSelect [options]="allRoles" formControlName="eroles" defaultLabel="Select a City" optionLabel="name" selectedItemsLabel="{0} items selected"></p-multiSelect> -->
+                <!-- <select class="form-select" formControlName="eroles" aria-label="Default select example">
+                    <option selected disabled value="">Select Category</option>
+                    <option >Admin</option>
+                    <option >Edit Company Information</option>
+                    <option>Upload Documents</option>
+                    <option>View Company Information</option>
+                </select> -->
+
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button  class="btn cancel-btn" (click)="close()">CANCEL</button>
+    <button class="btn save btn-primery">SEND INVITE</button>
+</div>
+<p-toast position="top-right">
+</p-toast>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

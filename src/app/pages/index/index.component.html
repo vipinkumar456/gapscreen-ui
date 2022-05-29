@@ -1,0 +1,5 @@
+<app-header [collapsed]="isCollapsed"></app-header>
+<app-sidenav (sendData)="collapsed($event)"></app-sidenav>
+<div [ngClass]="isCollapsed?'main-content':'collapsed-main-content'">
+    <router-outlet ></router-outlet>
+</div>

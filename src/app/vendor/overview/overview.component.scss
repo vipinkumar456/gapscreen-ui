@@ -1,0 +1,195 @@
+// .overview{
+//     .container{
+//         position: relative;
+//         right: 6px;
+//         width: 62%;
+//     }
+//     .date{
+//         h2{
+//             font-size: 20px;
+//             font-weight: bold;
+//         }
+//     }
+//     .position{
+//         width: 45%;
+//     }
+//     .date-card{
+//         display: flex;
+//         flex-wrap: wrap;
+//         .cards{
+//             width: 155px;
+//             border-radius: 10px;
+//             background: #f1f9fc;
+//             margin: 10px 5px;
+//             .text-base{
+//                 font-size: 14px;
+//                 font-weight: 600;
+//             }
+//             .text-bases{
+//                 display: flex;
+//                 align-items: center;
+//             }
+    
+//             .coloricons{
+//                 span{
+//                     padding: 0 10px;
+//                 }
+//             }
+//             .year{
+//                 .p{
+//                     font-size: 17px;
+//                     font-weight: bold;
+//                     color: #9f9d9e;
+//                 }
+//             }
+//         }
+//     }
+//     .document-container{
+//         .heading{
+//             h2{
+//                 font-size: 25px;
+//                 font-weight: bold;
+//             }
+//         }
+//         .documents{
+//             display: flex;
+//             align-items: center;
+//             .doc-card{
+//                 display: flex;
+//                 align-items: center;
+//                 justify-content: center;
+//                 flex-direction: column;
+//                 padding: 16px 10px;
+//                 margin: 10px;
+//                 width: 200px;
+//                 box-shadow:0px 0px 5px 0px rgb(164 163 163 / 45%);;
+//                 border-radius: 10px;
+        
+//                 .card-text{
+//                     text-align: center;
+//                     .texthead{
+//                         font-size: 14px;
+//                         font-weight: 600;
+//                         line-height: 18px;
+//                     }.positions{
+//                         padding: 10px 0;
+//                     }
+//                 }
+//             }
+//             .link{
+//                 a{
+//                     text-decoration: underline;
+//                     color: #2713a2;
+//                 }
+//             }
+//         }
+//     }
+
+//     .wrapper{
+//         .row{
+//             .border-line{
+//                 border-right: 1px solid lightgray;
+//                 .heading{
+//                     h2{
+//                         font-size: 20px;
+//                         font-weight: bold;
+//                         color: #000;
+//                     }
+//                 }
+//             }
+//             .input-wrapper{
+//                 display: flex;
+//                 align-items: center;
+//                 .image{
+//                     img{
+//                         width: 63px;
+//                         height: auto;
+//                     }
+//                 }
+//                 .overview-text{
+//                     font-size: 20px;
+//                     color: #000;
+//                     font-weight: bold;
+//                 }
+//             }
+//             .input-position{
+//                 position: relative;
+//                 top: 42px;
+//             }
+//         }
+//     }
+//     .row-cards-body{
+//         display: flex;
+//         flex-direction: column;
+//         padding: 10px;
+//         border-radius: 5px;
+//         width: auto;
+//         .right{
+//             border: 1px solid black;
+//             background: var(--blue-color);
+//             color: #fff;
+//             border-radius: 5px;
+//             font-size: 21px;
+//             padding: 0px 4px;
+//             margin: 0 5px 0 3px;
+            
+//         }
+//         .left{
+//             label{
+//                 font-size: 15px;
+//                 font-weight: 500;
+//             }
+//             p{
+//                 font-size: 21px;
+//                 font-weight: bold;
+//             }
+//         }
+//     }
+
+//     .row-card-body{
+//         display: flex;
+//         align-items: center;
+//         padding: 10px 3px;
+//         border-radius: 5px;
+//         box-shadow: 2px 2px 5px 0px rgba(164, 163, 163, 0.45);
+//         width: 212px;
+//         .right{
+//             border: 1px solid black;
+//             background: var(--blue-color);
+//             color: #fff;
+//             border-radius: 5px;
+//             font-size: 21px;
+//             padding: 5px 4px;
+//             margin: 0 9px 0 3px;
+//             img{
+//                 width: 20px;
+//             }
+//         }
+//         .left{
+//             label{
+//                 font-size: 14px;
+//                 font-weight: 400;
+//             }
+//             p{
+//                 font-size: 19px;
+//                 font-weight: bold;
+//             }
+//         }
+//     }
+//     .financial-container{
+//         .heading{
+//             h2{
+//                 font-size: 20px;
+//                 font-weight: bold;
+//                 color: #000;
+//             }
+//             p{
+//                 padding: 20px;
+//                 text-align: center;
+//                 font-size: 18px;
+//                 font-weight: 400;
+//             }
+//         }
+//     }
+    
+// }

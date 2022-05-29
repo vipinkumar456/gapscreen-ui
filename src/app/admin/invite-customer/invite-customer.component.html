@@ -1,0 +1,117 @@
+<div class="invite-customer">
+    <div class="heading  mt-4">
+        <div class="left">
+            <h1>Invite Customer</h1>
+        </div>
+        <div class="right">
+            <button class="btn" [routerLink]="['/admin/invitenewcustomer']">
+                <i class="icon-add icon" aria-hidden="true"></i><span>Invite New Customer</span>
+            </button>
+        </div>
+    </div>
+    <div class="grid flexbox mt-4" >
+        <div class="col-md-3 card">
+            <div class="">
+                <div class="card-body">
+                    <h3 class="bluee">{{invited}}
+                        <span> Invited</span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 card">
+            <div class="">
+                <div class="card-body">
+                    <h3 class="greenn">{{register}}
+                        <span>Registered</span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 card">
+            <div class="">
+                <div class="card-body">
+                    <h3 class="yelloww">{{pending}}
+                        <span>Approval Pending</span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-3 card">
+            <div class="">
+                <div class="card-body">
+                    <h3 class="redd">{{regStatusData[3]?.count}}
+                        <span>Approval Pending</span>
+                    </h3>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <div class="customer mt-4">
+        <p-table [columns]="customerHeaders" [value]="invitedCustomerList" class="p-table mt-5"
+            responsiveLayout="scroll" [resizableColumns]="true" [paginator]="true" [rows]="10"
+            [showCurrentPageReport]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[10,25,50]">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <ng-container *ngFor="let col of columns">
+                        <th pSortableColumn={{col.name}}>{{col.header}}<img *ngIf="col.sort" class=" topbottom"
+                                src="../../assets/images/arrow_drop_up-24px@2x.png">
+                        </th>
+                    </ng-container>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-vendor>
+                <tr>
+                    <!-- <td>{{product.companyId}}</td> -->
+                    <td>{{vendor.name}}</td>
+                    <td>{{vendor.fullName}}</td>
+                    <td>{{vendor.emailId}}</td>
+                    <td>{{vendor.country}}</td>
+                    <td>{{vendor.phoneNumber}}</td>
+                    <td>
+                        <!-- <div class="status bg-green" *ngIf="product.status=='Active'" >
+                            <span>{{product.status}}</span>
+                        </div>
+                        <div class="status bg-yellow" *ngIf="product.status=='Approval Pending'">
+                            <span>{{product.status}}</span>
+                        </div>
+                        <div class="status bg-blue" *ngIf="product.status !='Approval Pending' && product.status !='Active' ">
+                            <span>{{product.status}}</span>
+                        </div> -->
+
+                        <div class="status" [ngClass]="[vendor.status=='Not Started' ? 'bg-notStarted' : '',  
+                        vendor.status=='Link Opened' ? 'bg-blue' : '', vendor.status=='Invited' ? 'bg-blue' : '',
+                        vendor.status=='Approval Pending' ? 'bg-yellow' : '', vendor.status=='Registered' ? 'bg-green' : '', vendor.status=='Approved' ? 'bg-green' : '', vendor.status=='Rejected' ? 'bg-red' : '']">
+                        <span>{{vendor.status}}</span>
+                    </div>
+
+
+                    </td>
+                    <td>
+                        <div class="inline-img">
+                            <a [routerLink]="['/admin/invitenewcustomer','view',vendor.companyId]">
+                            <i class="icon-view icon "></i>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="inline-img" *ngIf="vendor.status=='Approval Pending'">
+                            <a [routerLink]="['/admin/invitenewcustomer','edit',vendor.companyId]"><i
+                                    class="icon-add-customer icon"></i></a>
+                        </div>
+                        
+                        <p-inputSwitch   *ngIf="vendor.status!='Approval Pending'" class="contacttext positions" [(ngModel)]="vendor.isActive" (onChange)="changeStatus(vendor)"></p-inputSwitch>
+
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+
+</div>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

@@ -1,0 +1,47 @@
+<div class="row p-3">
+    <div class="col-12 ">
+        <div class="contactheading">
+            <h2 class="font-bold text-2xl">Payment Terms</h2>
+            <button class="btn cancel-btn text-sm" style="border-radius: inherit;"
+                (click)="openPaymentTerms('','Add')"><i class="icon-add icon icons-position"
+                    aria-hidden="true"></i><span>Add Payment Terms</span></button>
+        </div>
+        <div class="page-content mt-3">
+            <div class="showList mt-5">
+
+
+                <p-table class="table catalogue-table" [columns]="headers" [value]="companyContracts"
+                    class="p-table mt-5" responsiveLayout="scroll" [resizableColumns]="true"  [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [rowsPerPageOptions]="[10,25,50]" >
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <ng-container *ngFor="let col of columns">
+                                <th class="cursor-pointer " pSortableColumn={{col.name}}>{{col.header}}<img
+                                        *ngIf="col.sort" class="topbottom"
+                                        src="../../assets/images/arrow_drop_up-24px@2x.png">
+                                </th>
+                            </ng-container>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-contracts>
+                        <tr style="height: 56px;color: gray;">
+                            <td>{{contracts.supplierName}}</td>
+                            <td>{{contracts.prePayments}}</td>
+                            <td>{{contracts.postPayments}}</td>
+                            <td>{{contracts.creditPeriods}}</td>
+                            <td>{{contracts.active}}</td>
+                            <td>
+
+                                <i class="icon-view mx-2 icon positions"
+                                    (click)="openPaymentTerms(contracts,'View')"></i>
+                                <i class="icon-edit icon positions" (click)="openPaymentTerms(contracts,'Edit')"></i>
+                                <i class="icon-delete icon positions" style="cursor: pointer;"></i>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>

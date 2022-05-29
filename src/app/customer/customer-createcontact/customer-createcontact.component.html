@@ -1,0 +1,97 @@
+
+<div class="customer-create-contact">
+<div class="row p-3">
+    <div class="col-12 ">
+        <div class="contactheading">
+            <h2 class="font-bold text-2xl">Create Contract</h2>
+            <button class="btn cancel-btn text-sm" style="border-radius: inherit;margin-right: 4%;"  [routerLink]="['/customer/company-contract']"><img src="../../../assets/images/arrow-left.png"> Go Back</button>
+        </div>
+        <form [formGroup]="contractForm">
+        <div class="mt-3">
+        <p-tabView >
+            <p-tabPanel header="Basic Setting" >
+            <div class="row mt-4" style="font-size: 13px;color: gray;">
+                <div class="col-6">
+                    <div class="inputInv mt-3">
+                        <label for="Student" class="font-semibold" >Supplier</label>
+                        <p-dropdown [options]="supplier" class="contacttext" formControlName="supplier" optionLabel="name"></p-dropdown>
+                        <!-- <input type="text" class="contacttext" pInputText>  -->
+                    </div>
+                    <div class="inputInv invite-digi-phone mt-3">
+                        <label for="Student" class="font-semibold" >Contact Number</label>
+                        <input type="text"  (keypress)="numberOnly($event)"  class="contacttext" formControlName="contactNumber" pInputText [ng2TelInputOptions]="{initialCountry:countryCode,separateDialCode:true}"
+                        (hasError)="onError($event)" (countryChange)="onCountryChange($event)" ng2TelInput>
+                    </div>
+                    <div class="ml-6  error-msg" *ngIf="f.contactNumber.touched && !hasError">
+                        Invalid Phone Number
+                    </div>
+                    <div class="inputInv mt-3">
+                        <label for="Student" class="font-semibold">Currency</label>
+                        <input type="text" class="contacttext" formControlName="currency" pInputText>
+                    </div>
+                    <div class="inputInv mt-3">
+                        <label for="Student" class="font-semibold">Start Date</label>
+                        <p-calendar class="w-100" [maxDate]="maxDate" formControlName="startDate" class="contacttext" dateFormat="dd-mm-yy" [showIcon]="true" inputId="icon" ></p-calendar>
+                    </div>
+                    <div class="inputInv mt-3"  style="align-items: baseline;">
+                        <label for="Student" class="font-semibold" >Note</label>
+                        <textarea  class="contacttext" formControlName="note" autoResize="autoResize" pInputTextarea></textarea>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="inputInv mt-3">
+                        <label for="Student" class="font-semibold">Contract Owner</label>
+                        <input type="text" class="contacttext" formControlName="contactOwner" pInputText>
+                    </div>
+                    <div class="inputInv mt-3">
+                        <label for="Student" class="font-semibold" >Contract Email</label>
+                        <input type="text" class="contacttext" formControlName="contactEmail" pInputText>
+                    </div>
+                    <div class="inputInv mt-3">
+                        <label for="Student" class="font-semibold">Annual Value</label>
+                        <input type="text" class="contacttext" formControlName="annualValue" pInputText>
+                    </div>
+                    <div class="inputInv mt-3">
+                        <label for="Student" class="font-semibold">Expiration Date</label>
+                        <p-calendar class="w-100" formControlName="expirationDate" [maxDate]="maxDate" class="contacttext" dateFormat="dd-mm-yy" [showIcon]="true" inputId="icon" ></p-calendar>
+                    </div>
+                    <div class="inputInv mt-3">
+                        <label for="Student" class="font-semibold" >Extendable Contract</label>
+                        <p-inputSwitch class="contacttext" formControlName="extendableContract" [(ngModel)]="checked"></p-inputSwitch>
+                    </div>
+
+                </div>
+            </div>
+            </p-tabPanel>
+            <p-tabPanel header="Documents" class="mt-4">
+                <div class="row">
+                    <div class="col-6" *ngFor="let document of documents">
+                        <div class="inputInv mt-4">
+                            <div class="uploadContainer space-between" style="width: 75%;">
+                                <p class="title"> {{document.title}}</p>
+
+                                <span class="inline-flex">
+                                    <a class="text-info mr-2 inline-flex align-middle" *ngIf="companyInfo[document.name]" (click)="download(companyInfo[document.name].fileName)" > <img src="../../../assets/images/view-icon-grey.png" class="tableIcon"/> </a>
+                                    <img  (click)="upload('doc',document.name,null)" src="../../../assets/images/upload-icon.png" class="tableIcon"/>
+                                    <img  *ngIf="companyInfo[document.name]" (click)="deleteFile('doc',document.name,null,companyInfo[document.name].fileName)" src="../../../assets/images/delet-icon.png" class="tableIcon"/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </p-tabPanel>
+        </p-tabView>
+        </div>
+        </form>
+        <div class="buttons  mt-5">
+            <button class="btn next" (click)="submit()">Add CONTRACT</button>
+        </div>
+    </div>
+</div>
+<input type="file" accept="application/pdf" style="visibility: hidden; height: 0px;width: 0px;" max="1" (change)="uploadFile()" #file>
+<p-toast position="top-right">
+</p-toast>
+
+</div>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

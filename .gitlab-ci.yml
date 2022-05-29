@@ -1,0 +1,28 @@
+variables:
+  DOCKER_REGISTRY: 604746670927.dkr.ecr.eu-west-2.amazonaws.com
+  AWS_DEFAULT_REGION: us-west-2
+  APP_NAME: digicomp-ui
+  DOCKER_HOST: tcp://docker:2375/
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_DRIVER: overlay2
+publish:
+  only:
+    - master
+  image: 
+    name: amazon/aws-cli
+    entrypoint: [""]
+  services:
+    - docker:18.09-dind
+  before_script:
+    - amazon-linux-extras install docker
+    - aws --version
+    - docker --version
+  script:
+    - aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
+    - aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
+    - aws configure set default_region_name "eu-west-2"
+    - docker system prune -f
+    - docker build -t $DOCKER_REGISTRY/$APP_NAME:$CI_PIPELINE_IID . 
+    
+    - aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin $DOCKER_REGISTRY
+    - docker push $DOCKER_REGISTRY/$APP_NAME:$CI_PIPELINE_IID

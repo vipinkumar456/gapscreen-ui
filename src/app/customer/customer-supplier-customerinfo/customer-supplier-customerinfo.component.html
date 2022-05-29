@@ -1,0 +1,55 @@
+<div class="row p-3">
+    <div class="col-12 ">
+        <div>
+            <div class="row">
+                <div class="col-4">
+                    <p class="font-bold text-2xl">Supplier/Customer Information</p>
+                </div>
+                <div class="col-8 supplierheading">
+                    <button class="btn cancel-btn text-sm" style="border-radius: inherit;"
+                        [routerLink]="['/customer/Add-supplier-info']"><i class="icon-add icons-position icons"
+                            aria-hidden="true"></i><span>Add Supplier</span></button>
+                    <button class="btn cancel-btn text-sm" style="border-radius: inherit;"><i
+                            class="icon icon-download"></i> <span>Download Bulk Supplier Sheet</span></button>
+                    <button class="btn btn-primery text-sm" style="border-radius: inherit;"><i
+                            class="icon-add icons icons-position" aria-hidden="true"></i><span>Upload Bulk Supplier</span></button>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="page-content mt-3">
+            <div class="showList mt-5">
+                <p-table class="table catalogue-table" [columns]="headers"[value]="companyContracts"
+                class="p-table mt-5" responsiveLayout="scroll" [resizableColumns]="true"  [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [rowsPerPageOptions]="[10,25,50]" >
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <ng-container *ngFor="let col of columns">
+                            <th class="cursor-pointer " pSortableColumn={{col.name}}>{{col.header}}<img
+                                    *ngIf="col.sort" class="topbottom"
+                                    src="../../assets/images/arrow_drop_up-24px@2x.png">
+                            </th>
+                        </ng-container>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-contracts>
+                    <tr style="height: 56px;color: gray;">
+                        <td>{{contracts.supplierName}}</td>
+                        <td>{{contracts.uniqueCode}}</td>
+                            <td>{{contracts.address}}</td>
+                            <td>{{contracts.contactNumber}}</td>
+                        <td >
+                            
+                            <i class="icon-edit icon positions " [routerLink]="['/customer/Add-supplier-info']"></i>
+                                    <!-- <img src="../../../assets/images/delet-icon.png"> -->
+                                    <i class="icon-delete icon positions "></i>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+
+<div class="regulations mt-4">
+    <form class="info-form" [formGroup]="regulationsForm">
+        <div class="grid flexbox">
+            <div class="col-md-6 col-xl-6 col-sm-12"  *ngFor="let document of documents">
+                <div class="input-wrapper">
+                    <div class="uploadContainer space-between mx-5">
+                        <p class="title"> {{termsAndConditions}} </p>
+                        <span class="inline-icon">
+                            <i *ngIf="viewDocument" class="icon-view icon" (click)="downloadTermsAndConditions()"></i> 
+                            <i class="icon-upload icon"  (click)="upload('termsAndConditions',document.name,null)"></i>
+                            <!-- <i class="icon-delete icon"></i> -->
+                        </span>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-6 col-sm-12"  *ngFor="let document of privacy">
+                <div class="input-wrapper">
+                    <div class="uploadContainer space-between mx-5">
+                        <p class="title"> {{privacyPolicy}} </p>
+                        <span class="inline-icon">
+                            <i *ngIf="viewPrivacyDocument" class="icon-view icon" (click)="downloadPrivacyPolicy()"> </i>
+                            <i class="icon-upload icon" (click)="upload('privacyPolicy',document.name,null)" ></i>
+                            <!-- <i class="icon-delete icon"></i> -->
+                        </span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="buttons mb-4">
+            <ng-container >
+                <button class="btn save" type="button" (click)="cancel()">Cancel</button>
+                <button class="btn next" type="button" (click)="submitted()">Submit</button>
+            </ng-container>
+        </div>
+    </form>
+</div>
+
+
+<input type="file" style="visibility: hidden; height: 0px;width: 0px;"  accept=".pdf,.doc" max="1"  (change)="uploadFile()" #file>
+<p-toast position="top-right">
+</p-toast>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

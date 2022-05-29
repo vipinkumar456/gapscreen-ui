@@ -1,0 +1,92 @@
+<app-header-login></app-header-login>
+<div class="register-cont-wrapper">
+    <div class="register-container">
+
+        <h1 class="login-heading">Register Your Company</h1>
+
+        <form [formGroup]="registerForm">
+            <div class="error-message" *ngIf="error">
+                {{errorMsg}}
+            </div>
+            <div class="row form-group">
+                <div class="col-md-6 mb-2">
+                    <p-dropdown [options]="countries" filter="true" formControlName="country" optionLabel="name"
+                        optionValue="code" (onChange)="changeCountry($event)" placeholder="Select a Country"  [ngClass]="{'is-invalid':formSubmitAttempt && f.country.errors}">
+                    </p-dropdown>
+                    <!-- <select class="form-select" style="height: 47px;" aria-label="Default select example" (change)="changeCountry($event.target)"
+                        formControlName="countryName" [ngClass]="{'is-invalid':formSubmitAttempt && f.countryName.errors}">
+                        <option selected value="" disabled>Select Country</option>
+                        <option *ngFor="let country of countries" [value]="country">{{country.countryName}}</option>
+                    </select> -->
+                    <div app-errors class="error-msg" [control]="f.country" [submit]="formSubmitAttempt"
+                        label="Country"></div>
+                </div>
+
+                <div class="col-md-6 mb-2">
+                    <input type="text" class="form-control" placeholder="Company Name" formControlName="name"
+                        [ngClass]="{'is-invalid':formSubmitAttempt && f.name.errors}" (keydown)="space($event)">
+                    <div app-errors class="error-msg" [control]="f.name" [submit]="formSubmitAttempt"
+                        label="Company Name"></div>
+                </div>
+
+                <div class="col-md-6 mb-2">
+                    <input type="text" class="form-control" placeholder="Registration Reference Type"
+                        formControlName="type" [ngClass]="{'is-invalid':formSubmitAttempt && f.type.errors}"
+                        (keydown)="space($event)">
+                    <div app-errors class="error-msg" [control]="f.type" [submit]="formSubmitAttempt"
+                        label="Registration Reference Type"></div>
+                </div>
+
+                <div class="col-md-6 mb-2">
+                    <input type="text" class="form-control" placeholder="Registration Number"
+                        formControlName="identificationNumber"
+                        [ngClass]="{'is-invalid':formSubmitAttempt && f.identificationNumber.errors}"
+                        (keydown)="space($event)">
+                    <div app-errors class="error-msg" [control]="f.identificationNumber" [submit]="formSubmitAttempt"
+                        label="Registration Number"></div>
+                </div>
+
+                <div class="col-md-6 mb-2">
+                    <input type="text" class="form-control" placeholder="First Name" formControlName="firstName"
+                        [ngClass]="{'is-invalid':formSubmitAttempt && f.firstName.errors}" (keydown)="space($event)">
+                    <div app-errors class="error-msg" [control]="f.firstName" [submit]="formSubmitAttempt"
+                        label="First Name"></div>
+                </div>
+
+                <div class="col-md-6 mb-2">
+                    <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName"
+                        [ngClass]="{'is-invalid':formSubmitAttempt && f.lastName.errors}" (keydown)="space($event)">
+                    <div app-errors class="error-msg" [control]="f.lastName" [submit]="formSubmitAttempt"
+                        label="Last Name"></div>
+                </div>
+
+                <div class="col-md-6 mb-2">
+                    <input type="text" class="form-control" placeholder="Email ID" formControlName="emailId"
+                        [ngClass]="{'is-invalid':formSubmitAttempt && f.emailId.errors}" (keydown)="space($event)">
+                    <div app-errors class="error-msg" [control]="f.emailId" [submit]="formSubmitAttempt"
+                        label="Email ID"></div>
+                </div>
+
+                <div class="col-md-6 mb-2" *ngIf="inputOptions">
+                    <input #phone class="form-control" (keypress)="numberOnly($event)" placeholder="Phone Number"
+                        ng2TelInput formControlName="phoneNumber" [ng2TelInputOptions]="inputOptions"
+                        (countryChange)="onCountryChange($event)" (hasError)="onError($event)"
+                        [ngClass]="{'is-invalid':formSubmitAttempt && f.phoneNumber.errors}" (keydown)="space($event)">
+                    <div app-errors class="error-msg" [control]="f.phoneNumber" [submit]="formSubmitAttempt"
+                        label="Phone Number"></div>
+                    <div class="error-msg" *ngIf="(f.phoneNumber.touched && f.phoneNumber.value!='') && !hasError">
+                        Invalid Phone Number
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+            </div>
+            <div class="text-center">
+                <button (click)="signup()" class="btn login-btn">Register Now</button>
+            </div>
+            <div class="text-center">
+                <p class="register-user">Already Registered? <a [routerLink]="['/login']">Login</a></p>
+            </div>
+        </form>
+    </div>
+</div>

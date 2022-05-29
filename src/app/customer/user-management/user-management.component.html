@@ -1,0 +1,70 @@
+
+<div class="user-cutomer-managment">
+<!-- 
+    <div class="row">
+        <div class="col-4">
+            <p class="font-bold text-2xl">User Access  Management</p>
+        </div>
+        <div class="col-8 supplierheading">
+            <button class="btn cancel-btn text-sm" style="border-radius: inherit;"
+                [routerLink]="['/customer/add-user']"><i class="icon-add icons-position"
+                    aria-hidden="true"></i><span>Add User</span></button>
+             </div>
+    </div> -->
+
+    <div class="heading  mt-4">
+        <div class="left">
+            <h1>User Access Management</h1>
+        </div>
+        <div class="right">
+            <button class="btn" [routerLink]="['/customer/add-user']">
+                <i class="icon-add icons-position"
+                aria-hidden="true"></i><span>Add User</span></button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="page-content mt-3">
+            <div class="showList mt-5">
+                <p-table class="table catalogue-table" [columns]="headers" [value]="users"
+                class="p-table mt-5" responsiveLayout="scroll" [resizableColumns]="true" [paginator]="true" [rows]="10"
+                [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [rowsPerPageOptions]="[10,25,50]">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <ng-container *ngFor="let col of columns">
+                            <th class="cursor-pointer " pSortableColumn={{col.name}}>{{col.header}}
+                                <img  *ngIf="col.sort" class="topbottom" src="../../assets/images/arrow_drop_up-24px@2x.png">
+                            </th>
+                        </ng-container>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-users>
+                    <tr style="height: 56px;color: gray;">
+                        <td>{{users.firstName}}</td>
+                        <td>{{users.email}}</td>
+                        <td>{{users.mobileNumber}}</td>
+                        <td>{{users.eroles}}</td>
+                        <td>
+                            <p *ngIf="users.active == true"> Yes</p>
+                        <p *ngIf="users.active != true"> No</p></td>
+                        <td>{{users.locations}}</td>
+                        <td>
+                            <p-inputSwitch class="contacttext positions" *ngIf="user.username == users.email" [disabled]="true" [(ngModel)]="users.active" ></p-inputSwitch>
+                            <p-inputSwitch class="contacttext positions" *ngIf="user.username != users.email" [disabled]="false" [(ngModel)]="users.active" (onChange)="changeStatus(users)"></p-inputSwitch>
+                            <!-- <i class="icon-edit icon positions" (click)="editUser(users)"></i>
+                            <i class="icon-delete icon positions" (click)="delete(users.id)"></i> -->
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<p-toast position="top-right">
+</p-toast>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

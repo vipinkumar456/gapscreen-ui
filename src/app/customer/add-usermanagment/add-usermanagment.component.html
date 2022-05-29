@@ -1,0 +1,80 @@
+<div class="add-usermanagment">
+    <form  [formGroup]="userForm">
+        <div class="row companyuser">
+            <div class="col-12">
+                <div class="dashboardHeading">
+                    <h2 class="fw-bold">Add User Access Management</h2>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-md-3 form-group">
+                        <label for="" class="">First Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" formControlName="firstName">
+                        <div app-errors class="error-msg" [control]="f.firstName"  label="first Name"></div>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label for="" class="">Last Name<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" formControlName="lastName">
+                        <div app-errors class="error-msg" [control]="f.lastName"  label="Active"></div>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label for="" class="">Email Address<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" formControlName="email">
+                        <div app-errors class="error-msg" [control]="f.email"  label="Email Address"></div>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label for="" class="user-managment">Phone Number<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="mobileNumber"  (keypress)="numberOnly($event)"  class="form-control" [ng2TelInputOptions]="{initialCountry:countryCode,separateDialCode:true}"
+                        (hasError)="onError($event)" (countryChange)="onCountryChange($event)" ng2TelInput>
+                        <div app-errors class="error-msg" [control]="f.mobileNumber"  label="Phone Number"></div>
+                        <div class="error-msg" *ngIf="f.mobileNumber.touched && !hasError">
+                            Invalid Phone Number
+                        </div>
+                    </div>
+                    
+                </div>
+                <p class="text-2xl font-bold mt-3">Locations</p>
+                <div class="row mt-3"  >
+                    <!-- <div class="col-md-3 form-group"  style="display: flex;">
+                        <p-checkbox  binary="true"  formControlName="locations" value="locations" (click)="locationChange()" inputId="binary"></p-checkbox>
+                        <label for="binary" class=" form-check ">Select All</label>
+                    </div> -->
+                    <div class="col-md-3 form-group"  style="display: flex;" *ngFor="let location of locations">
+                        <input type="checkbox" (change)="onLocationChange($event)" [value]="location.value" class="form-check-input ml-2" />
+                        <label for="binary" class=" form-check ">{{location.label}}</label>
+                    </div>
+                </div>
+        
+                <p class="text-2xl font-bold mt-5">Access Roles</p>
+                <div class="row mt-3">
+                    <!-- <div class="col-md-3 form-group"  style="display: flex;">
+                        <input type="checkbox" (change)="onAccessChange($event)" value="sanction" class="form-check-input ml-2" />
+                        <label for="binary" class=" form-check ">Select All</label>
+                    </div> -->
+                    <div class="col-md-3 form-group"  style="display: flex;"  *ngFor="let role of roles">
+                        <input type="checkbox" (change)="onAccessChange($event)" [value]="role.value" class="form-check-input ml-2" />
+                        <label for="binary" class=" form-check ">{{role.label}}</label>
+                    </div>
+                </div>
+        
+                <p class="text-2xl font-bold mt-5">Departments</p>
+                <div class="row mt-3" >
+                    <!-- <div class="col-md-3 form-group"  style="display: flex;">
+                        <input type="checkbox" (change)="onDepartmentsChange($event)" value="sanction" class="form-check-input ml-2" />
+                        <label for="binary" class=" form-check ">Select All</label>
+                    </div> -->
+                    <div class="col-md-3 form-group"  style="display: flex;" *ngFor="let department of departments">
+                        <input type="checkbox" (change)="onDepartmentsChange($event)" [value]="department.value" class="form-check-input ml-2" />
+                        <label for="binary" class=" form-check ">{{department.label}}</label>
+                    </div>
+                    
+                </div>
+                
+                <div class="buttons mt-5 mb-5">
+                    <button class="btn save" [routerLink]="['/customer/user-management']">CANCEL</button>
+                    <button class="btn next" (click)="submit()">SUBMIT</button>
+                </div>
+            </div>
+        </div>
+        </form>
+        
+</div>

@@ -1,0 +1,117 @@
+<div class="directors mt-4">
+    <div class="bank-wrappers mb-4">
+        <div class="bank-box">
+            <div class="left">
+                <img src="../../../assets/images/directors.png" alt="">
+            </div>
+            <div class="right">
+                <label for="">Total Directors</label>
+                <p>05</p>
+            </div>
+        </div>
+        <div class="bank-box">
+            <div class="left">
+                <img src="../../../assets/images/shareholder.png" alt="">
+            </div>
+            <div class="right">
+                <label for="">Total Shareholders</label>
+                <p>09</p>
+            </div>
+        </div>
+        <div class="bank-box">
+            <div class="left">
+                <img src="../../../assets/images/no.png" alt="">
+            </div>
+            <div class="right">
+                <label for=""> No of Employees </label>
+                <p>73</p>
+            </div>
+        </div>
+    </div>
+    <div class="grid flex-box">
+        <div class="col-6">
+            <div class="heading">
+                <h1>Directors</h1>
+            </div>
+            <!-- code for table -->
+            <div class="row">
+                <div class="page-content mt-3">
+                    <div class="showList mt-2">
+                        <p-table class="table catalogue-table" [columns]="locationheaders" [value]="locationData"
+                            class="p-table mt-5" responsiveLayout="scroll" [resizableColumns]="true">
+                            <ng-template pTemplate="header" let-columns>
+                                <tr>
+                                    <ng-container *ngFor="let col of columns">
+                                        <th class="cursor-pointer " pSortableColumn={{col.name}}>{{col.header}}<img
+                                                *ngIf="col.sort" class="topbottom"
+                                                src="../../assets/images/arrow_drop_up-24px@2x.png">
+                                        </th>
+                                    </ng-container>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-user>
+                                <tr style="height: 56px;color: gray;">
+                                    <td>{{user.directorsName}}</td>
+                                    <td>
+                                        <i class="icon-view icon positions "></i>
+                                        <i class="icon-edit icon  positions"></i>
+
+                                    </td>
+                                    <td>
+                                        <i class="icon-view icon positions "></i>
+                                        <i class="icon-edit icon  positions"></i>
+
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-6 columns">
+            <div class="heading">
+                <h1>Shareholders</h1>
+            </div>
+            <div class="row">
+                <div class="page-content mt-3">
+                    <div class="showList mt-2">
+        
+        
+                        <p-table class="table catalogue-table" [columns]="shareholderheader" [value]="shareholderdata"
+                            class="p-table mt-5" responsiveLayout="scroll" [resizableColumns]="true">
+                            <ng-template pTemplate="header" let-columns>
+                                <tr>
+                                    <ng-container *ngFor="let col of columns">
+                                        <th class="cursor-pointer " pSortableColumn={{col.name}}>{{col.header}}<img
+                                                *ngIf="col.sort" class="topbottom"
+                                                src="../../assets/images/arrow_drop_up-24px@2x.png">
+                                        </th>
+                                    </ng-container>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-user>
+                                <tr style="height: 56px;color: gray;">
+                                    <td>{{user.shareHolderName}}</td>
+                                    <td>{{user.percentage}}</td>
+                                    <td>
+                                        <i class="icon-view icon positions "></i>
+                                        <i class="icon-edit icon  positions"></i>
+        
+                                    </td>
+                                    <td>
+                                        <i class="icon-view icon positions "></i>
+                                        <i class="icon-edit icon  positions"></i>
+        
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,21 @@
+<div class="customer-questionnaire mt-4">
+    <div class="heading-container">
+        <div class="heading">
+            <h1>Questionnaire</h1>
+        </div>
+        <!-- <button  class="btn-position"  type="button">
+            Request for Information
+        </button> -->
+    </div>
+    <div class="task mt-3" >
+        <div class="questions" *ngFor="let questions of companyInfo">
+            <h2> <span>Q.</span> {{questions.question}}</h2>
+            <p> {{questions.answer}} </p>
+        </div>
+    </div>
+
+    <div class="buttons mb-3">
+        <div class="btn save" (click)="back()">Back</div>
+        <div class="btn next"  (click)="next()" >Next</div>
+    </div>
+</div>

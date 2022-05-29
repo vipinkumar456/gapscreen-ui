@@ -1,0 +1,99 @@
+<div class="view-vendor">
+            <div class="upper-container">
+                <div class="heading">
+                    <h1 *ngIf="companyInfoData">{{companyInfoData.companyName}}</h1>
+                </div>
+                <!-- <div class="button">
+                    <a (click)="back()">
+                        <span>Go Back</span>
+                    </a>
+                </div> -->
+            </div>
+    
+            <div class="stepper-container">
+                <div class="bs-stepper">
+                    <div class="bs-stepper-header" role="tablist">
+                        <!-- your steps here -->
+                        <div class="step" data-target="#companyInformation">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="companyInformation-part" id="companyInformation-part-trigger">
+                                <span *ngIf="1<step" class="bs-active-circle">✔</span>
+                                <span *ngIf="1>=step" class="bs-stepper-circle">1</span>
+                                <div class="text active">
+                                    <span class="bs-stepper-label">Company <span class="info">Information</span> </span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#upload-part">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="upload-part" id="upload-part-trigger">
+                                <span *ngIf="2<step" class="bs-active-circle">✔</span>
+                                <span *ngIf="2>=step" class="bs-stepper-circle">2</span>
+                                <div class="texts">
+                                    <span class="bs-stepper-label">Upload <span class="infos">Documents</span></span>
+                                </div>
+                            </button>
+                        </div>
+    
+    
+                        <div class="line"></div>
+                        <div class="step" data-target="#questionnaire">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="questionnaire" id="questionnaire-trigger">
+                                <span *ngIf="3<step" class="bs-active-circle">✔</span>
+                                <span *ngIf="3>=step" class="bs-stepper-circle">3</span>
+                                <span class="bs-stepper-label">Questionnaire</span>
+                            </button>
+                        </div>
+
+                        <div class="line"></div>
+                        <div class="step" data-target="#esg">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="esg" id="esg-trigger">
+                                <span *ngIf="4<step" class="bs-active-circle">✔</span>
+                                <span *ngIf="4>=step" class="bs-stepper-circle">4</span>
+                                <span class="bs-stepper-label-esg">ESG</span>
+                            </button>
+                        </div>
+
+                        <div class="line"></div>
+                        <div class="step" data-target="#regulations">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="regulations-part" id="regulations-part-trigger">
+                                <span *ngIf="5<step" class="bs-active-circle">✔</span>
+                                <span *ngIf="5>=step" class="bs-stepper-circle">5</span>
+                                <span class="bs-stepper-label">Regulations</span>
+                            </button>
+                        </div>                        
+                    </div>
+                    <div class="bs-stepper-content p-0">
+                        <!-- your steps content here -->
+                        <div id="companyInformation" class="content" role="tabpanel" aria-labelledby="companyInformation-part-trigger">
+                            <div class="component">
+                                <app-customer-companyinformation  (getCompanyInfo)="getCompanyInfo($event)" ></app-customer-companyinformation>
+                            </div>
+                        </div>
+                        <div id="upload-part" class="content" role="tabpanel" aria-labelledby="upload-part-trigger">
+                            <div class="component">
+                                <app-customer-uploaddocument (getCompanyInfo)="getCompanyInfo($event)" ></app-customer-uploaddocument>
+                            </div>
+                        </div>
+    
+                        <div id="questionnaire" class="content" role="tabpanel" aria-labelledby="questionnaire-trigger">
+                            <div class="component">
+                                <app-customer-questionnaire (getCompanyInfo)="getCompanyInfo($event)"></app-customer-questionnaire>
+                            </div>
+                        </div>
+
+                        <div id="esg" class="content" role="tabpanel" aria-labelledby="esg-trigger">
+                            <div class="component">
+                                <app-customer-esg (getCompanyInfo)="getCompanyInfo($event)"></app-customer-esg>
+                            </div>
+                        </div>
+    
+                        <div id="regulations" class="content" role="tabpanel" aria-labelledby="regulations-part-trigger">
+                            <div class="component">
+                                <app-customer-regulation (getCompanyInfo)="getCompanyInfo($event)"></app-customer-regulation>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+</div>
+

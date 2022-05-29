@@ -1,0 +1,21 @@
+<div class="customer-esg mt-4">
+    <div class="heading-container">
+        <div class="heading">
+            <h1>ESG</h1>
+        </div>
+        <!-- <button  class="btn-position"  type="button">
+            Request for Information
+        </button> -->
+    </div>
+    <div class="task mt-3" >
+        <div class="questions" *ngFor="let esg of companyInfo">
+            <h2> <span>Q.</span> {{esg.question}}</h2>
+            <p> {{esg.answer}} </p>
+        </div>
+    </div>
+
+    <div class="buttons mb-3">
+        <div class="btn save" (click)="back()">Back</div>
+        <div class="btn next" (click)="next()" >Next</div>
+    </div>
+</div>

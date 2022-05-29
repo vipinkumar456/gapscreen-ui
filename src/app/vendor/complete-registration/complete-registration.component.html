@@ -1,0 +1,38 @@
+<div class="dashboards mt-4">
+    <h2 class="fw-bold" *ngIf="companyName">Hello {{companyName}}</h2>
+    <div class="vendor-profile">
+        <div class="vendor-top">
+            <div class="header-text">
+            <h4>Thanks for submission!</h4>
+            <p>Your application is in review. Our team will get back to you shortly</p>
+            </div>
+            <div class="progressContainer">
+                <div class="br first borders">
+                    <span class="img first">
+                        <div class="image">
+                            <img src="../../../assets/images/ticmark.png" alt="">
+                        </div>
+                    </span>
+                </div>
+                <div class="complete-progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="this.progress"
+                        aria-valuemin="100" aria-valuemax="100"></div>
+                </div>
+                <div class="br last bars" >
+                    <span class="img last">
+                        <div class="image">
+                            <img src="../../../assets/images/star.png" alt="">
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <p class='all-step'>ALL STEPS COMPLETED</p>
+        </div>
+    </div>
+    <div class="container btnContainer">
+        <!-- <button class='btn dataBtn mr-2' (click)="goTo()">COMPLETE YOUR DATA</button> -->
+        <!-- <button class='btn dataBtn ml-2 bg-success' *ngIf="message=='COMPLETED'" (click)="goHome()">Home</button> -->
+
+    </div>
+    <!-- <app-company-information-form></app-company-information-form> -->
+</div>

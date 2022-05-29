@@ -1,0 +1,43 @@
+<div class="row p-3">
+    <div class="col-12 ">
+        <div class="contactheading">
+            <h2 class="font-sold text-2xl">Case Management</h2>
+            <button class="btn cancel-btn text-sm" style="border-radius: inherit;" (click)="addCase()"><i
+                    class="icon-add icons-position" aria-hidden="true"></i><span>Add Case</span></button>
+        </div>
+        <div class="page-content mt-3">
+            <div class="showList mt-5">
+
+
+                <p-table class="table catalogue-table" [columns]="headers"[value]="caseManagements"
+                class="p-table mt-5" responsiveLayout="scroll" [resizableColumns]="true"  [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [rowsPerPageOptions]="[10,25,50]" >
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <ng-container *ngFor="let col of columns">
+                            <th class="cursor-pointer " pSortableColumn={{col.name}}>{{col.header}}<img
+                                    *ngIf="col.sort" class="topbottom"
+                                    src="../../assets/images/arrow_drop_up-24px@2x.png">
+                            </th>
+                        </ng-container>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-case>
+                    <tr style="height: 56px;color: gray;">
+                        <td>{{case.date}}</td>
+                        <td>{{case.supplier}}</td>
+                        <td>{{case.referenceNumber}}</td>
+                        <td>{{case.note}}</td>
+                        <td>
+                                <i class="icon-edit icon positions" [routerLink]="['/customer/add-case-managment']"></i>
+                                <i class="icon-delete icon positions "></i>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+              
+            </div>
+        </div>
+    </div>
+</div>

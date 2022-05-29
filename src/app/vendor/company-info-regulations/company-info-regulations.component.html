@@ -1,0 +1,30 @@
+<div class="container regulation-container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Regulations</h3>
+            <form name="form" (ngSubmit)="f.form.valid && onSubmit(f.form)" #f="ngForm" novalidate>
+                <ng-container *ngIf="companyInfo.checkboxes">
+                    <div class="form-check" *ngFor="let check of checkboxes; let i = index">
+                        <input [disabled] ='disableBtn' class="form-check-input" type="checkbox" [name]="check.title" [(ngModel)]="check.value" [id]="check">
+                        <label class="form-check-label" for="check">
+                            I agree to the <span class="openFile" (click)="openFile(check.fileName)">{{check.label}}</span>
+                    </label>
+                    </div>
+                </ng-container>
+                <div class="buttons">
+                    <ng-container *ngIf="companyInfo?.status != 'Submitted'">
+                        <button class="btn save" type="button" (click)="back()">BACK</button>
+                    <button class="btn next" type="submit">SAVE & NEXT</button>
+                    </ng-container>
+                    <ng-container *ngIf="companyInfo?.status == 'Submitted'">
+                        <button class="btn save" type="button" (click)="back()">BACK</button>
+                       </ng-container>
+            
+                </div>
+ 
+            </form>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,80 @@
+<div class="row" style="margin-bottom:120px">
+   
+    <div class="dashboardHeading">
+        <h2 class="fw-bold">Invite To Digi<span class="dg-comp-span">Comp+</span></h2>
+        <button class="btn cancel-btn" style="border-radius: inherit;" (click)="bulkInvite()"><i class="icon-download mr-4" aria-hidden="true"></i><span class="text-sm">Download Bulk Invite Sheet</span></button>
+    </div>
+    <div class="row">
+        <div class="col-6" >
+            <div class="inputInv mt-4">
+                <label for="Student" class="text-gray-400 font-semibold" style="width: 25%;">Upload Sheet</label>
+                <div class="uploadContainer space-between mx-5" style="width: 75%;">
+                    <p class="title"> Bulk Invite Sheet</p>
+
+                    <span class="inline-flex">
+                        <!-- <a class="text-info mr-2 inline-flex align-middle" *ngIf="companyInfo[document.name]" (click)="download(companyInfo[document.name].fileName)" > <img src="../../../assets/images/view-icon-grey.png" class="tableIcon"/> </a> -->
+                        <img  (click)="upload()" src="../../../assets/images/upload-icon.png" class="tableIcon"/>
+                        <img  *ngIf="userForm.length>0" (click)="deleteFile()" src="../../../assets/images/delet-icon.png" class="tableIcon"/>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <p-table [value]="userForm" *ngIf="userForm.length>0" dataKey="name" editMode="row" class="tableFixed" styleClass="p-datatable-gridlines top-20">
+            <ng-template pTemplate="header" >
+                <tr> 
+                    <ng-container *ngFor="let name of tableheadingNames">
+                    <th> 
+                        <ng-container >
+                            {{name.name}}
+                        </ng-container>
+                    </th> 
+                    </ng-container>
+                    <th></th>
+                </tr>
+            </ng-template>
+           
+            <ng-template pTemplate="body" let-account let-ri="rowIndex">
+    
+                <tr [pEditableRow]="account">
+                    <ng-container>
+                     
+                        <td pEditableColumn *ngFor="let name of tableNames">
+                           
+                            <ng-container>
+                                {{name.edit}}
+                            </ng-container>
+                            <p-cellEditor >
+                                <ng-template pTemplate="input">
+
+                                    <input pInputText  
+                                        [(ngModel)]="account[name.title]"  [required]="name.required" [name]="name.title" [type]="name.inpType"
+                                        [min]="1" style="width:100%" >    
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{account[name.title]}}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td >
+                            <i class="pi pi-trash text-danger" (click)="delete(ri)"></i>
+                        </td>
+    
+                    </ng-container>
+                    </tr>
+            </ng-template>
+     
+    
+        </p-table>
+       
+    </div>
+   
+</div>
+<div class="buttons  mt-5">
+    <button  class="btn save" [routerLink]="['/admin/invitenewcustomer']">CANCEL</button>
+    <button class="btn next" (click)="submit()" [disabled]="userForm.length==0">SEND INVITE</button>
+</div>
+<input type="file" accept=".xls,.xlsx" style="visibility: hidden; height: 0px;width: 0px;" max="1" (change)="uploadFile()" #file>
+<p-toast position="top-right">
+</p-toast>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

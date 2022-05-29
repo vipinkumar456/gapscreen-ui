@@ -1,0 +1,6 @@
+<ul class="company-info-side-list list-none text-left">
+    <ng-container *ngFor="let activity of activities">
+        <li class="activityName mb-1"> {{activity.activityDone }} by {{activity.username}} </li>
+        <li class="activityDate"> {{activity.activityDate | date: 'MMM dd,yyyy hh:mm:ss'}} </li>
+    </ng-container>
+</ul>

@@ -1,0 +1,136 @@
+<!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#my-nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button> 
+ 6617 -> for style 
+-->
+
+<div id="my-nav" [ngClass]="collapsed?'collapsed-sidenav':'expand-sidenav'" class="sidenav">
+ 
+  <ul  *ngIf="isAdmin">
+    <li>
+      <a (click)="toggleSidebar()">
+        <i class="icon-nav "></i>
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['admin/dashboard']" title="dashboard">
+        <i class="icon-dashboard icon"></i>
+        <span>Dashboard</span>
+      </a>
+      
+    </li>
+
+    <li>
+      <a [routerLink]="['admin/adminnewservice']" title="dashboard">
+        <i class="icon-setting icon"></i>
+        <span>New Service</span>
+      </a>
+      
+    </li>
+    <li>
+      <a [routerLink]="['admin/invitecustomer']" title="settings">
+        <i class="icon-join icon"></i>
+        <span>Invite Customer</span>
+      </a>
+    </li>
+    
+  </ul>  
+
+  <ul  *ngIf="isVendor">
+    <li>
+      <a (click)="toggleSidebar()">
+        <i class="icon-nav"></i>
+      </a>
+    </li>
+    <li *ngIf="dashboardStep >=6">
+      <a [routerLink]="['vendor/dashboard']" title="settings">
+        <i class="icon-dashboard  icon"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+    
+    <li *ngIf="dashboardStep < 6">
+      <a [routerLink]="['vendor/vendor-info']" title="dashboard">
+        <i class="icon-dashboard icon"></i>
+        <span>Company Information</span>
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['vendor/user-management']" title="user management">
+        <i class="icon-add-user icon"></i>
+        <span>User Management</span>
+      </a>
+    </li>
+
+    
+  
+  </ul>
+
+  <ul  *ngIf="isCustomer">
+    <li>
+      <a (click)="toggleSidebar()">
+        <i class="icon-nav"></i>
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['customer/dashboard']" title="dashboard">
+        <i class="icon-dashboard icon"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+    <!-- <li>
+      <a [routerLink]="['customer/company-contract']" title="company contracts">
+        <i class="icon-contacts icon"></i>
+        <span>Company Contract</span>
+      </a>
+    </li> -->
+    <!-- <li>
+      <a [routerLink]="['customer/service-catalogue']" title="service catalogue">
+        <i class="icon-services icon"></i>
+        <span>Service Catalogue</span>
+      </a>
+    </li> -->
+    <!-- <li>
+      <a [routerLink]="['customer/payment-terms']" title="payment terms">
+        <i class="icon-payment icon"></i>
+        <span>Payment Terms</span>
+      </a>
+    </li> -->
+    <!-- <li>
+      <a [routerLink]="['customer/supplier-customer-information']" title="supplier-info">
+        <i class="icon-customer-info icon"></i>
+        <span>Supplier Info</span>
+      </a>
+    </li> -->
+    <li>
+      <a [routerLink]="['customer/user-management']" title="user management">
+        <i class="icon-add-user icon"></i>
+        <span>User Management</span>
+      </a>
+    </li>
+    <!-- <li>
+      <a [routerLink]="['customer/case-managment']" title="case management">
+        <i class="icon-case-mgmt icon"></i>
+        <span>Case Management</span>
+      </a>
+    </li> -->
+    <li>
+      <a [routerLink]="['customer/new-companysearch']" title="company search">
+        <i class="icon-smart-search icon"></i>
+        <span>Company Search</span>
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['customer/invite-customer']" title="invite vendor">
+        <i class="icon-join icon"></i>
+        <span>Invite Vendor</span>
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['customer/customer-setting']" title="settings">
+        <i class="icon-setting icon"></i>
+        <span>Settings</span>
+      </a>
+    </li>
+  </ul>
+</div>

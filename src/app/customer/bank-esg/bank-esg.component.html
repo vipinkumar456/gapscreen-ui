@@ -1,0 +1,52 @@
+<div class="bank-esg">
+<div class="esg mt-4">
+    <div class="banner mt-3">
+        <div class="left">
+            <p>Environmental, Social, & Governance (ESG) Score</p>
+        </div>
+        <div class="right">
+            <div class="circle">
+                <div align="center" style="margin-top:10%;">
+                    <circle-progress [percent]="8" [radius]="80" [space]="-14" [outerStrokeWidth]="14" [innerStrokeWidth]="14" [outerStrokeColor]="'#3bcc71'" [innerStrokeColor]="'#ebeff0'" [animation]="true" [backgroundPadding]="20" [titleFontSize]="39" [titleFontWeight]="700"
+                [showSubtitle]="false" [unitsFontSize]="39" [unitsFontWeight]="700" [animationDuration]="300" [renderOnClick]="false"></circle-progress>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- code for esg table -->
+    <div class="esg-table">
+        <div class="row">
+            <div class="page-content mt-3">
+                <div class="showList mt-2">
+    
+    
+                    <p-table class="table catalogue-table" [columns]="locationheaders" [value]="locationData"
+                        class="p-table mt-5" responsiveLayout="scroll"  [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                        [rowsPerPageOptions]="[10,25,50]" >
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <ng-container *ngFor="let col of columns">
+                                    <th class="cursor-pointer " pSortableColumn={{col.name}}>{{col.header}}<img
+                                            *ngIf="col.sort" class="topbottom"
+                                            src="../../assets/images/arrow_drop_up-24px@2x.png">
+                                    </th>
+                                </ng-container>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-user>
+                            <tr class="tr">
+                                <td>{{user.item}}</td>
+                                <td>
+                                    <i class="{{user.image}}"></i>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

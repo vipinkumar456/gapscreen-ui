@@ -1,0 +1,568 @@
+<div class="row dashboard customer-dashboard">
+    <div class="col-md-9">
+        <div class="dashboardHeading">
+            <p class="fw-bold text-3xl font-family">Dashboard</p>
+            <div class="searchContainer">
+                <i class="icon-search" aria-hidden="true" [routerLink]="['/customer/companysearch']"></i>
+                <span class="inline-flex text-lg text-inherit"><input type="search" style="outline: none;"
+                        placeholder="Search..." /></span>
+
+                <!-- <span class="inline-flex"><input type="search" class='form-control' placeholder="Search Vendor" /> </span>    -->
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-12 flex-box">
+                <div class="medium-size-btn">
+                    <button class="inv-btn  btn-block red-btn" [routerLink]="['/customer/invite']"><i class="icon-user"
+                        aria-hidden="true"></i><span class="ml-2">Invite To DigiComp+</span></button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="row latestNews mt-3 text-base ">
+                <div class="col-2 rowcol-2" style="justify-content:center"><span style="color:#ea4335" class>Latest
+                        News</span></div>
+                <div class="col-9 rowcol-9">
+                    <p class="p-2"><span class="font-family">Digicomp+ Compliance and Risk analysis platform enables
+                            customers to mitigate
+                            risk and develop competitive advantages.</span></p>
+                </div>
+                <div class="col-1 rowcol-1">
+                    <img src="../../assets/images/arrow-left.png" width="20" class="cursor-pointer">
+                    <img src="../../assets/images/arrow-right.png" width="20" class="cursor-pointer">
+                </div>
+
+            </div>
+            <div class="row flexboxrow mt-3">
+                <div class="col-6 flexrow">
+                    <ul>
+                        <li>
+                            <span><svg width="20" height="20">
+                                    <rect width="20" height="20" style="fill:#34a853" />
+                                </svg></span>
+                            <span class="span font-family">Compliance</span>
+                        </li>
+                        <li>
+                            <span><svg width="20" height="20">
+                                    <rect width="20" height="20" style="fill:#fbbc05" />
+                                </svg></span><span class="moderate-compliance span span-width font-family">Moderate Compliance</span>
+                        </li>
+                        <li class="non-compliance">
+                            <span><svg width="20" height="20">
+                                    <rect width="20" height="20" style="fill:#ea4335" />
+                                </svg></span><span class="span span-width font-family">Non-Compliance</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-6 flexrow" style="text-align: right;">
+                    <ul>
+                        <li>
+                            <span><svg width="20" height="20">
+                                    <rect width="20" height="20" style="fill:#34a853" />
+                                </svg></span>
+                            <span class="span font-family">Low Risk</span>
+                        </li>
+                        <li class="medium-risk">
+                            <span><svg width="20" height="20">
+                                    <rect width="20" height="20" style="fill:#fbbc05" />
+                                </svg></span><span class="span font-family ">Medium Risk</span>
+                        </li>
+                        <li class="high-risk">
+                            <span><svg width="20" height="20">
+                                    <rect width="20" height="20" style="fill:#ea4335" />
+                                </svg></span><span class="span font-family">High Risk</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3 " style="column-gap: 60px;">
+                <ng-container *ngFor="let col of customer ">
+                <div class="col mt-5">
+                    <div class="card" style="box-shadow: 0 7px 6px -1px lightgray;width: 250px;">
+                        <div class="card-body">
+                            <div class="dashboardHeading"><p class="card-title card-title-name text-2xl fw-bold">{{col.numbers}}</p><img src="{{col.img}}" width="100" ></div>
+                            <p class="mt-4 pb-1" style="color: rgb(169 169 169);font-size: 15px;font-weight: 600;">{{col.heading}}</p>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            </div> -->
+            <div class="row mt-5">
+                <div class="col-md-6" style="border-right:1px solid lightgray">
+                    <h2 class="font-family">Customers</h2>
+                    <div class="row">
+                        <ng-container *ngFor="let col of customer ">
+                            <div class="col-md-6 col-sm-12 mt-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="text-base cardheading">{{col.heading}}</p>
+                                        <p class="text-xl font-bold mt-2 font-family">4250</p>
+                                        <div class="mt-3 coloricons" [routerLink]="['/customer/customersrisk']">
+                                            <p class="text-base cursor-pointer"><span class="greendot"></span><span
+                                                    class="mx-2 font-family">2355</span></p>
+                                            <p class="text-base cursor-pointer"><span class="yellowdot"></span><span
+                                                    class="mx-2" font-family>556</span></p>
+                                            <p class="text-base cursor-pointer"><span class="reddot"></span><span
+                                                    class="mx-2 font-family">1248</span></p>
+                                        </div>
+                                        <div class="mt-3 coloricons">
+                                            <p class="text-bases"><img src="../../assets/images/arrow-up.png" width="20"
+                                                    class="cursor-pointer">2.5%</p>
+                                            <p class="text-bases red-color"><img
+                                                    src="../../assets/images/arrow-down.png" width="20"
+                                                    class="cursor-pointer">4.1%</p>
+                                            <p class="text-bases green-color"><img
+                                                    src="../../assets/images/arrow-up.png" width="20"
+                                                    class="cursor-pointer">2.5%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2 class="font-family">Vendors</h2>
+                    <div class="row">
+                        <ng-container *ngFor="let col of customer ">
+                            <div class="col-md-6 col-sm-12  mt-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="text-base cardheading">{{col.heading}}</p>
+                                        <p class="text-xl font-bold mt-2">4250</p>
+                                        <div class="mt-3 coloricons" [routerLink]="['/customer/customersrisk']">
+                                            <p class="text-base"><span class="greendot"></span><span
+                                                    class="mx-2">2355</span></p>
+                                            <p class="text-base"><span class="yellowdot"></span><span
+                                                    class="mx-2">556</span></p>
+                                            <p class="text-base"><span class="reddot"></span><span
+                                                    class="mx-2">1248</span></p>
+                                        </div>
+                                        <div class="mt-3 coloricons">
+                                            <p class="text-bases"><img src="../../assets/images/arrow-up.png" width="20"
+                                                    class="cursor-pointer">2.5%</p>
+                                            <p class="text-bases"><img src="../../assets/images/arrow-down.png"
+                                                    width="20" class="cursor-pointer">4.1%</p>
+                                            <p class="text-bases"><img src="../../assets/images/arrow-up.png" width="20"
+                                                    class="cursor-pointer">2.5%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row mt-5">
+                <div class="col-md-6  top-customers">
+                    <div class="row">
+                        <h2 class="p-3 font-family" style="text-align:center;">Top 10 Customers</h2>
+                        <!-- top 10 Customers Compliance -->
+                        <div class="col-md-6 col-sm-12 " style="border-right:2px solid rgb(220 228 230)">
+                            <p class="text-base font-family">Compliance</p>
+                            <div class="chart">
+                                <p-chart type="doughnut" [data]="data" class="charts" [options]="chartOptions">
+                                </p-chart>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 ">
+                            <p class="text-base font-family">Risk</p>
+                            <div class="chart">
+                                <p-chart type="doughnut" [data]="data" class="charts" [options]="chartOptions">
+                                </p-chart>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6  top-suppliers">
+                    <div class="row">
+                        <h2 class="p-3 centers font-family">Top 10 Vendors</h2>
+                        <div class="col-md-6 col-sm-12 ">
+                            <p class="text-base">Compliance</p>
+                            <div class="chart">
+                                <p-chart type="doughnut" [data]="data" [options]="chartOptions" [style]="{'width': '20%'}">
+                                </p-chart>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 ">
+                            <p class="text-base font-family">Risk</p>
+                            <div class="chart">
+                                <p-chart type="doughnut" [data]="data" [options]="chartOptions" [style]="{'width': '20%'}">
+                                </p-chart>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-6" style="border-right:1px solid lightgray">
+                    <h2 class="font-family">FINANCIAL RISK SCORE</h2>
+                    <div class="row">
+                        <ng-container *ngFor="let col of suppliers ">
+                            <div class="col-md-6 col-sm-12  mt-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="text-base cardheading">{{col.heading}}</p>
+                                        <!-- <p class="text-xl font-bold mt-2">4250</p> -->
+                                        <div class="mt-3 coloricons">
+                                            <p class="text-base"><span class="greendot"></span><span
+                                                    class="mx-2">2355</span></p>
+                                            <p class="text-base"><span class="yellowdot"></span><span
+                                                    class="mx-2">556</span></p>
+                                            <p class="text-base"><span class="reddot"></span><span
+                                                    class="mx-2">1248</span></p>
+                                        </div>
+                                        <div class="mt-3 coloricons">
+                                            <p class="text-bases"><img src="../../assets/images/arrow-up.png" width="20"
+                                                    class="cursor-pointer">2.5%</p>
+                                            <p class="text-bases"><img src="../../assets/images/arrow-down.png"
+                                                    width="20" class="cursor-pointer">4.1%</p>
+                                            <p class="text-bases"><img src="../../assets/images/arrow-up.png" width="20"
+                                                    class="cursor-pointer">2.5%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2>IT RISK SCORE</h2>
+                    <div class="row">
+                        <ng-container *ngFor="let col of suppliers ">
+                            <div class="col-md-6 col-sm-12  mt-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="text-base cardheading">{{col.heading}}</p>
+                                        <!-- <p class="text-xl font-bold mt-2">4250</p> -->
+                                        <div class="mt-3 coloricons">
+                                            <p class="text-base"><span class="greendot"></span><span
+                                                    class="mx-2">2355</span></p>
+                                            <p class="text-base"><span class="yellowdot"></span><span
+                                                    class="mx-2">556</span></p>
+                                            <p class="text-base"><span class="reddot"></span><span
+                                                    class="mx-2">1248</span></p>
+                                        </div>
+                                        <div class="mt-3 coloricons">
+                                            <p class="text-bases"><img src="../../assets/images/arrow-up.png" width="20"
+                                                    class="cursor-pointer">2.5%</p>
+                                            <p class="text-bases"><img src="../../assets/images/arrow-down.png"
+                                                    width="20" class="cursor-pointer">4.1%</p>
+                                            <p class="text-bases"><img src="../../assets/images/arrow-up.png" width="20"
+                                                    class="cursor-pointer">2.5%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="mt-5">
+
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <h2>Compliance Yearly Review Renewal</h2>
+                    <div class="row">
+                        <ng-container *ngFor="let col of suppliers ">
+                            <div class="col-md-6 col-sm-12  mt-5">
+                                <div class="card ">
+                                    <p class="card-box-heading">{{col.heading}}</p>
+                                    <div class="box-card">
+                                        <svg viewBox='0 0 100 100'>
+                                            10
+                                            <circle cx='50' cy='50' r='45' id='gray' />
+                                            <circle cx='50' cy='50' r='45' id='red' />
+                                            <circle cx='50' cy='50' r='45' id='green' />
+                                            <circle cx='50' cy='50' r='45' id='blue' />
+                                            <circle cx='50' cy='50' r='45' id='orange' />
+                                        </svg>
+                                        <div class="card-text">
+                                            <p class="green-box ">Scheduled <span>1620</span></p>
+                                            <p class="red-box">Missed <span>420</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2>Risk Yearly Review Renewal</h2>
+                    <div class="row">
+                        <ng-container *ngFor="let col of suppliers">
+                            <div class="col-md-6 col-sm-12  mt-5">
+                                <div class="card">
+                                    <p class="card-box-heading">{{col.heading}}</p>
+                                    <div class="box-card">
+                                        <svg viewBox='0 0 100 100'>
+                                            10
+                                            <circle cx='50' cy='50' r='45' id='gray' />
+                                            <circle cx='50' cy='50' r='45' id='red' />
+                                            <circle cx='50' cy='50' r='45' id='green' />
+                                            <circle cx='50' cy='50' r='45' id='blue' />
+                                            <circle cx='50' cy='50' r='45' id='orange' />
+                                        </svg>
+                                        <div class="card-text">
+                                            <p class="green-box">Scheduled <span>2623</span></p>
+                                            <p class="red-box">Missed <span>1122</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="right-container  pb-5">
+            <button class="inv-btn red-btn" [routerLink]="['/customer/invite']"><i class="icon-user"
+                    aria-hidden="true"></i><span class="ml-2">Invite To DigiComp+</span></button>
+            <p class="mt-5 text-2xl p-3 font-bold" (click)="shareModal()">ESG Score Card</p>
+            <div class="m-3 right-box">
+                <p-tabView>
+                    <p-tabPanel header="Customers">
+                        <!-- <table class="table list-table mt-3">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="height: 56px;">
+                                    <td>Sealinks</td>
+                                    <td><span>4</span></td>
+                                </tr>
+                                <tr style="height: 56px;">
+                                    <td>Sealinks</td>
+                                    <td><span>4</span></td>
+                                </tr>
+                                <tr style="height: 56px;">
+                                    <td>Sealinks</td>
+                                    <td><span>4</span></td>
+                                </tr>
+                                <tr style="height: 56px;">
+                                    <td>Sealinks</td>
+                                    <td><span>4</span></td>
+                                </tr>
+                            </tbody>
+                        </table> -->
+                        <div class="mt-3">
+                            <div class="tabletop mt-3">
+                                <div class="tabletop-head">
+                                    <div class="name">
+                                        <p>Name</p>
+                                    </div>
+                                    <div class="score">
+                                        <p>Score</p>
+                                    </div>
+                                </div>
+
+                                <div class="tabletop-body">
+                                    <div class="body-text">
+                                        <div class="left">
+                                            <p>Sealinks </p>
+                                        </div>
+                                        <div class="center">
+                                            <p class="reddots"><span>4</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tabletop-body">
+                                    <div class="body-text">
+                                        <div class="left">
+                                            <p>Sealink Shippings</p>
+                                        </div>
+                                        <div class="center">
+                                            <p class="yellowdots"><span>7</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tabletop-body">
+                                    <div class="body-text">
+                                        <div class="left">
+                                            <p>Sealink Shippings</p>
+                                        </div>
+                                        <div class="center">
+                                            <p class="greendots"><span>4</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tabletop-body">
+                                    <div class="body-text">
+                                        <div class="left">
+                                            <p>Sealink Shippings</p>
+                                        </div>
+                                        <div class="center">
+                                            <p class="greendots"><span>4</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel header="Vendors">
+                        <div class="mt-3">
+                            <div class="tabletop mt-3">
+                                <div class="tabletop-head">
+                                    <div class="name">
+                                        <p>Name</p>
+                                    </div>
+                                    <div class="score">
+                                        <p>Score</p>
+                                    </div>
+                                </div>
+
+                                <div class="tabletop-body">
+                                    <div class="body-text">
+                                        <div class="left">
+                                            <p>Sealinks </p>
+                                        </div>
+                                        <div class="center">
+                                            <p class="reddots"><span>7</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tabletop-body">
+                                    <div class="body-text">
+                                        <div class="left">
+                                            <p>Sealink </p>
+                                        </div>
+                                        <div class="center">
+                                            <p class="yellowdots"><span>4</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tabletop-body">
+                                    <div class="body-text">
+                                        <div class="left">
+                                            <p>Sealink </p>
+                                        </div>
+                                        <div class="center">
+                                            <p class="greendots"><span>6</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tabletop-body">
+                                    <div class="body-text">
+                                        <div class="left">
+                                            <p>Sealink Shippings</p>
+                                        </div>
+                                        <div class="center">
+                                            <p class="greendots"><span>4</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </p-tabPanel>
+                </p-tabView>
+            </div>
+            <div class="dashboardHeading mt-3 pt-3 pb-3">
+                <p class="text-2xl font-bold cursor-pointer" style="cursor: pointer;">Adverse Media</p>
+                <p class="font-bold text-base text-rose-700 mt-1 p-red">View All</p>
+            </div>
+
+            <div>
+                <ng-container *ngFor="let col of adverseMedia">
+                    <div class="row pt-3 pb-3 m-2 bg-white" style="border:1px solid lightgray">
+                        <div class="col-3">
+                            <img src="{{col.img}}">
+                        </div>
+                        <div class="col-9">
+                            {{col.title}} <br>
+                            <p class="text-gray-400">12-Dec-2021</p>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <p class="mt-3 text-2xl p-3 font-bold">Open Issues</p>
+            <div class="m-3">
+                <div class="table-top mt-3">
+                    <div class="table-head">
+                        <div class="name">
+                            <p>Name</p>
+                        </div>
+                        <div class="category">
+                            <p>Category</p>
+                        </div>
+                    </div>
+
+                    <div class="table-body">
+                        <div class="body-text">
+                            <div class="left">
+                                <p>Sealinks</p>
+                            </div>
+                            <div class="center">
+                                <p><span>Compliance Risk</span></p>
+                            </div>
+                            <div class="right">
+                                <p><i class="fas fa-ellipsis-v cursor-pointer"></i></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-body">
+                        <div class="body-text">
+                            <div class="left">
+                                <p>Sealink</p>
+                            </div>
+                            <div class="center">
+                                <p><span>Compliance Risk</span></p>
+                            </div>
+                            <div class="right">
+                                <p><i class="fas fa-ellipsis-v cursor-pointer"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-body">
+                        <div class="body-text">
+                            <div class="left">
+                                <p>Sealink</p>
+                            </div>
+                            <div class="center">
+                                <p><span>Compliance Risk</span></p>
+                            </div>
+                            <div class="right">
+                                <p><i class="fas fa-ellipsis-v cursor-pointer"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-body">
+                        <div class="body-text">
+                            <div class="left">
+                                <p>Sealink</p>
+                            </div>
+                            <div class="center">
+                                <p><span>Compliance Risk</span></p>
+                            </div>
+                            <div class="right">
+                                <p><i class="fas fa-ellipsis-v cursor-pointer"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- <circle-progress [percent]="percent" [radius]="80" [space]="-14" [outerStrokeWidth]="14" [innerStrokeWidth]="14" [outerStrokeLinecap]="'square'" [outerStrokeColor]="'red'" [innerStrokeColor]="'#ebeff0'" [animation]="true" [backgroundPadding]="20" [titleFontSize]="39" [titleFontWeight]="700"
+            [showSubtitle]="false" [showUnits]="false" [toFixed]="1" [unitsFontSize]="39" [unitsFontWeight]="700" [animationDuration]="300" [renderOnClick]="false"></circle-progress>
+            <p class="text-neutral-500">Avergae Risk Score</p>
+            <hr class="mt-4" style="color: lightgray;">
+            <p class="mt-4 text-lg font-bold">Customer Opportunity</p>
+            <p-chart type="pie" [data]="customerGraph"  [style]="{'width': '40%'}"></p-chart>
+            <hr class="mt-4" style="color: lightgray;">
+            <p class="mt-4 text-lg font-bold">Supplier Distribution</p>
+            <p-chart type="pie" [data]="supplierGraph"  [style]="{'width': '40%'}"></p-chart> -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+# [START runtime]
+runtime: nodejs14
+handlers:
+- url: /
+  static_files: dist/digi-comp/index.html
+  upload: dist/digi-comp/index.html
+- url: /
+  static_dir: dist/digi-comp
+# [END runtime]

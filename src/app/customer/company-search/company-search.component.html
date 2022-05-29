@@ -1,0 +1,219 @@
+<div class="companysearch">
+    <div class="left">
+        <form [formGroup]="companySearchForm">
+            <div class="search-box">
+                <div class="search-left">
+                    <div class="heading">
+                        <div class="left">
+                            <h1>Search Company / Individual</h1>
+                        </div>
+                    </div>
+
+                    <div class="grid mt-4">
+                        <div class="col-12">
+                            <div class="inputmargin">
+                                <label for="Student" class="student">Search For:<i class="red-star">*</i></label>
+
+                                <div class="radio-btn">
+                                    <p-radioButton name="searchType" value="Company" (click)="company('company')"
+                                        inputId="vendor" formControlName="searchType"></p-radioButton>
+                                    <label for="vendor" class="ml-2 text-black font-medium">Company</label>
+
+                                    <p-radioButton name="searchType" value="Individual" class="ml-2"
+                                        (click)="company('Individual')" inputId="customer" formControlName="searchType">
+                                    </p-radioButton>
+                                    <label for="customer" class="ml-2 text-black font-medium">Individual</label>
+                                </div>
+                            </div>
+                            <div app-errors class="error-msg-12" [control]="f.searchType" [submit]="formSubmitAttempt"
+                                label="searchType"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-right">
+                    <div class="boxes">
+                        <div class="icon">
+                            <i class="icon-search"></i>
+                        </div>
+                        <div class="search-text">
+                            <label for="">Total Subscribed Search</label>
+                            <p>{{totalSearch}}</p>
+                        </div>
+                    </div>
+                    <div class="boxes">
+                        <div class="icon">
+                            <i class="icon-search purple"></i>
+                        </div>
+                        <div class="search-text">
+                            <label for="">Total Used Search</label>
+                            <p>{{totalUsed}}</p>
+                        </div>
+                    </div>
+                    <div class="boxes">
+                        <div class="icon">
+                            <i class="icon-search pink"></i>
+                        </div>
+                        <div class="search-text">
+                            <label for="">Total Available Search</label>
+                            <p>{{totalSearch+totalUsed}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="companybox">
+                <div class="row  mt-4">
+                    <div class="col-xl-4 col-md-6 column-width">
+                        <div class="input-wrapper">
+                            <div>
+                                <label *ngIf="companyDisplay">Name:<i class="red-star">*</i></label>
+                                <label *ngIf="!companyDisplay">Full Name:<i class="red-star">*</i></label>
+                            </div>
+                            <input class="full-name mt-2" type="text" pInputText formControlName="name"
+                                [ngClass]="{ 'is-invalid': formSubmitAttempt && f.name.errors }" />
+                        </div>
+                        <div app-errors class="error-msg-4" [control]="f.name" [submit]="formSubmitAttempt"
+                            label="Name"></div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 column-space">
+                        <div class="input-wrapper">
+                            <div>
+                                <label *ngIf="companyDisplay">Date Of Incorporation:<i class="red-star">*</i></label>
+                                <label *ngIf="!companyDisplay">Date Of Birth:<i class="red-star">*</i></label>
+                            </div>
+                            <p-calendar class="mt-2 form-select-dob" [maxDate]="maxDate" dateFormat="dd-mm-yy"
+                                [showIcon]="true" inputId="icon" formControlName="dob"
+                                [ngClass]="{ 'is-invalid': formSubmitAttempt && f.dob.errors }"></p-calendar>
+                        </div>
+                        <div app-errors class="error-msg-4" [control]="f.dob" [submit]="formSubmitAttempt"
+                            label="Date Of Incorporation"></div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 column-space">
+                        <div class="input-wrapper">
+                            <div>
+                                <label *ngIf="companyDisplay">Country:<i class="red-star">*</i></label>
+                                <label *ngIf="!companyDisplay">Nationality<i class="red-star">*</i></label>
+                            </div>
+                            <select class=" mt-2 form-select country" aria-label="Default select example"
+                                formControlName="country" [ngClass]="{
+                  'is-invalid': formSubmitAttempt && f.country.errors
+                }">
+                                <option selected value="" disabled>Select Country</option>
+                                <option *ngFor="let country of countries" [value]="country.name">
+                                    {{ country.name }}
+                                </option>
+                            </select>
+                        </div>
+                        <div app-errors class="error-msg-4" [control]="f.country" [submit]="formSubmitAttempt"
+                            label="Country"></div>
+                    </div>
+                </div>
+
+                <div class="row second-row mt-4">
+
+                    <div class="col-xl-4 col-md-6" *ngIf="!companyDisplay">
+                        <div class="input-wrapper">
+                            <h2>Gender:</h2>
+                            <div class="col-xl-4 col-md-6" *ngIf="!companyDisplay">
+                                <div class="inputmargin">
+                                    <p-radioButton name="gender" value="male" inputId="vendor" formControlName="gender">
+                                    </p-radioButton>
+                                    <label for="male" class="ml-2 text-black font-medium">Male</label>
+                                    <p-radioButton name="gender" value="female" class="ml-2" inputId="customer"
+                                        formControlName="gender"></p-radioButton>
+                                    <label for="male" class="ml-2 text-black font-medium">Female</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-12">
+                        <div class="input-wrapper">
+                            <h2>Matching Threshold Percentage:</h2>
+                            <div class="inputmargin">
+                                <p-radioButton name="fuzziness" value="50" formControlName="fuzziness">
+                                </p-radioButton>
+                                <label for="vendor" class="ml-2 text-black font-medium">50%</label>
+
+                                <p-radioButton name="fuzziness" value="75" class="ml-2" formControlName="fuzziness">
+                                </p-radioButton>
+                                <label for="customer" class="ml-2 text-black font-medium">75%</label>
+                                <p-radioButton name="fuzziness" value="90" class="ml-2" formControlName="fuzziness">
+                                </p-radioButton>
+                                <label for="customer" class="ml-2 text-black font-medium">90%</label>
+
+                                <p-radioButton name="fuzziness" value="100" class="ml-2" formControlName="fuzziness">
+                                </p-radioButton>
+                                <label for="customer" class="ml-2 text-black font-medium">100%</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-12 input-checkboxmargin">
+                        <div class="input-wrapper">
+                            <h2></h2>
+
+
+                            <div class="checkoverflow">
+                                <input type="checkbox" (change)="onCheckboxChange($event)" value="sanction"
+                                    class="form-check-input ml-2" />
+                                <label class="ml-2" for="binary">Sanctions</label>
+
+                                <input type="checkbox" (change)="onCheckboxChange($event)" *ngIf="!companyDisplay"
+                                    value="pep" class="form-check-input ml-2" />
+                                <label class="ml-2" *ngIf="!companyDisplay" for="binary">PEP</label>
+
+                                <input type="checkbox" (change)="onCheckboxChange($event)" value="adverse-media"
+                                    class="form-check-input ml-2" />
+                                <label class="ml-2" for="binary">Adverse Media</label>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="btn save" (click)="onClear()">CLEAR</button>
+                <button class="btn next" (click)="postData()">CREATE SEARCH</button>
+            </div>
+        </form>
+    </div>
+    <div class="search-table mt-5">
+        <div class="customer">
+            <p-table [columns]="headers" [value]="CompanyData" class="p-table mt-5" responsiveLayout="scroll"
+                [resizableColumns]="true">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <ng-container *ngFor="let col of columns">
+                            <th pSortableColumn="{{ col.name }}">
+                                {{ col.header
+                                }}<img *ngIf="col.sort" class="topbottom"
+                                    src="../../assets/images/arrow_drop_up-24px@2x.png" />
+                            </th>
+                        </ng-container>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td>{{ product.dob | date }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.searchType }}</td>
+                        <td>{{ product.fuzziness }}</td>
+                        <td>{{ product.amlTypes }}</td>
+                        <td>
+                            <div [ngClass]="product.status == 'CREATED' ? 'redstatus' : 'bluestatus'" *ngIf="product.status == 'CREATED'">
+                                <span>Search In Progress</span>
+                            </div>
+                            <div [ngClass]="product.status == 'COMPLETED' ? 'bluestatus' : 'redstatus'" *ngIf="product.status == 'COMPLETED'" (click)="view(product.id)">
+                                <span>View Result</span>
+                                <div class="image">
+                                    <img src="../../../assets/images/arrow-right.png" alt="" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

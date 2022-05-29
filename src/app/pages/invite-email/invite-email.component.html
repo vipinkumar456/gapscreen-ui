@@ -1,0 +1,63 @@
+<app-header-login></app-header-login>
+<div class="register-cont-wrapper">
+    <div class="register-container">
+        <div class="login">
+            <div class="heading">
+                <h2>WELCOME TO Digi <span class="dg-comp-span">Comp+</span></h2>
+            </div>
+            <div class="login-heading">
+                <h1>Create Password & Register</h1>
+            </div>
+        </div>
+
+        <form [formGroup]="registerForm">
+            <div class="error-message" *ngIf="error">
+                {{errorMsg}}
+            </div>
+            <div class="row">
+                <div class="col-md-6" *ngIf="this.type=='Vendor'">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Referred by" formControlName="referredBy">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Company Name" formControlName="name">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Email ID" formControlName="emailId">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="number" class="form-control" placeholder="Phone Number" formControlName="phoneNumber">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input [type]="password" class="form-control" placeholder="Password" formControlName="password" [ngClass]="{'is-invalid':formSubmitAttempt && f.password.errors }">
+                        <i (click)="viewPassword()" class="password-icon" [ngClass]="show ? 'icon-hide' : 'icon-view'" aria-hidden="true"></i>
+                        <div app-errors class="error-msg" [control]="f.password" [submit]="formSubmitAttempt" label="Password"></div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input [type]="reTypepassword" class="form-control" placeholder="Re-type Password" formControlName="retypePassword" [ngClass]="{'is-invalid':formSubmitAttempt && f.retypePassword.errors}">
+                        <i (click)="viewRePassword()" class="password-icon" [ngClass]="showReType ? 'icon-hide' : 'icon-view'" aria-hidden="true"></i>
+                        <div app-errors class="error-msg" [control]="f.retypePassword" [submit]="formSubmitAttempt" label="Confirm Password"></div>
+                    </div>
+                </div> 
+
+            </div>
+            <div class="text-center">
+                <button (click)="signup()" class="btn login-btn">Submit</button>
+            </div>
+            <!-- <div class="text-center">
+                <p class="register-user">Already Registered? <a [routerLink]="['/login']">Login</a></p>
+            </div> -->
+        </form>
+    </div>
+</div>
